@@ -20,10 +20,10 @@ func _process(delta):
 	
 	var anchorDist = toAnchor.length()
 	print(anchorDist)
-	var forceMultiplier = exp(-anchorDist/10.0)
+	var forceMultiplier = anchorDist#exp(-anchorDist*1e10)
 	print(forceMultiplier)
 	var anchorForce = toAnchor.normalized() * forceMultiplier
 	
-	apply_force(toAnchor*3.0)
+	apply_force(anchorForce)
 	#move_and_slide()
 	pass

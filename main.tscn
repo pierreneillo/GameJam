@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3b23gwyceno6"]
+[gd_scene load_steps=8 format=3 uid="uid://b3b23gwyceno6"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_k27p8"]
 [ext_resource type="Texture2D" uid="uid://bqh5fnjye7e3l" path="res://assets/images_church.jpeg" id="2_cyg6i"]
 [ext_resource type="Texture2D" uid="uid://d0s88h1vv63dm" path="res://assets/church2.jpeg" id="3_dc84r"]
+[ext_resource type="Script" path="res://bigBubble.gd" id="3_ed3lf"]
 [ext_resource type="Script" path="res://anchor.gd" id="4_xwty3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gi3tr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ou4wl"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -14,8 +19,20 @@ script = ExtResource("1_k27p8")
 [node name="Sprite2D" type="Sprite2D" parent="player"]
 texture = ExtResource("2_cyg6i")
 
-[node name="anchor" type="Sprite2D" parent="." groups=["anchor"]]
-position = Vector2(429, 265)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
+scale = Vector2(5, 5)
+shape = SubResource("CircleShape2D_gi3tr")
+
+[node name="bigBubble" type="StaticBody2D" parent="." groups=["anchor"]]
+position = Vector2(431, 269)
+script = ExtResource("3_ed3lf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bigBubble"]
+scale = Vector2(5, 5)
+shape = SubResource("CircleShape2D_ou4wl")
+
+[node name="anchor" type="Sprite2D" parent="bigBubble"]
+position = Vector2(-2, -4)
 scale = Vector2(0.401639, 0.401639)
 texture = ExtResource("3_dc84r")
 script = ExtResource("4_xwty3")
