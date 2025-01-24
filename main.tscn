@@ -3,12 +3,13 @@
 [ext_resource type="Script" path="res://player.gd" id="1_k27p8"]
 [ext_resource type="Texture2D" uid="uid://bqh5fnjye7e3l" path="res://assets/images_church.jpeg" id="2_cyg6i"]
 [ext_resource type="Script" path="res://bigBubble.gd" id="3_ed3lf"]
-[ext_resource type="Texture2D" uid="uid://0tjddsgwdt58" path="res://assets/bubble.png" id="4_pi1h2"]
+[ext_resource type="Texture2D" uid="uid://3hkai7iie0yu" path="res://assets/bubble.png" id="4_pi1h2"]
 [ext_resource type="Script" path="res://anchor.gd" id="4_xwty3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lapib"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ou4wl"]
+radius = 9.94429
 
 [node name="Node2D" type="Node2D"]
 
@@ -33,7 +34,7 @@ scale = Vector2(5, 5)
 shape = SubResource("CircleShape2D_ou4wl")
 
 [node name="bubbleSprite" type="Sprite2D" parent="bigBubble"]
-position = Vector2(-2, -4)
-scale = Vector2(0.401639, 0.401639)
+position = Vector2(-0.333335, 0.33333)
+scale = Vector2(0.0594887, 0.0594887)
 texture = ExtResource("4_pi1h2")
 script = ExtResource("4_xwty3")
