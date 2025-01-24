@@ -1,5 +1,8 @@
 extends RigidBody2D
 
+@export var distMultiplier = 500
+@export var impulsMultiplier = 20000
+
 var anchor
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -9,19 +12,17 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	#normal
-	#apply_force()
-	#var anchor = Vector2(200,200)
-	var anchorPos = anchor.position
-	var toAnchor = anchorPos - position
+
+	var toAnchor = anchor.position - position
 	var anchorDist = toAnchor.length()
 	var forceMultiplier = anchorDist
+	
+	# Gravity model for now, independant of the distance to the center of the bubble
 	var anchorForce = toAnchor.normalized() * forceMultiplier
 	
 	var dir=Vector2.ZERO
 	var impuls=Vector2.ZERO
-	var distMultiplier = 500
-	var impulsMultiplier = 20000
+
 	if Input.is_action_just_pressed("Inthebubble"): #need to check if is on the ground
 		impuls=toAnchor
 	if Input.is_action_just_pressed("Jump") : #need to check if is not in the air already
@@ -34,3 +35,6 @@ func _process(delta):
 	var impulsForce=impuls.normalized()*impulsMultiplier
 	var totalForce = anchorForce + dirForce + impulsForce
 	apply_force(totalForce)
+	
+	# Change direction so that the sprite is "standing" on the planet
+	set_rotation(toAnchor.angle() - PI/2)
