@@ -9,7 +9,7 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r0rak"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ou4wl"]
-radius = 9.94429
+radius = 657.724
 
 [node name="Node2D" type="Node2D"]
 
@@ -26,16 +26,17 @@ scale = Vector2(2, 2)
 shape = SubResource("CapsuleShape2D_r0rak")
 
 [node name="bigBubble" type="StaticBody2D" parent="." groups=["anchor"]]
-position = Vector2(569, 338)
+position = Vector2(611, 581)
 scale = Vector2(3, 3)
 script = ExtResource("3_ed3lf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bigBubble"]
-scale = Vector2(5, 5)
+position = Vector2(94.3333, -19.6667)
+scale = Vector2(0.25, 0.25)
 shape = SubResource("CircleShape2D_ou4wl")
 
 [node name="bubbleSprite" type="Sprite2D" parent="bigBubble"]
-position = Vector2(-0.333335, 0.33333)
-scale = Vector2(0.0594887, 0.0594887)
+position = Vector2(93.6667, -19)
+scale = Vector2(0.191333, 0.191333)
 texture = ExtResource("4_pi1h2")
 script = ExtResource("4_xwty3")
