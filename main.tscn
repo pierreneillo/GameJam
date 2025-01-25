@@ -9,15 +9,18 @@
 [node name="Node2D" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("6_v7rn5")]
+z_index = 2
 position = Vector2(235, 157)
 script = ExtResource("1_k27p8")
 
 [node name="SimpleObstacle" parent="." instance=ExtResource("6_xnntk")]
+z_index = 1
 position = Vector2(858, 292)
 rotation = -2.46608
 disable_mode = 1
 
 [node name="StaticBody2D" parent="." groups=["anchor"] instance=ExtResource("7_sw2d6")]
+z_index = -1
 position = Vector2(535, 659)
 collision_layer = 4
 collision_mask = 11
