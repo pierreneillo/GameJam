@@ -4,7 +4,7 @@ uniform sampler2D noise_tex;
 uniform vec4 bubble_color : source_color;
 uniform float height_multiplier = .1;
 uniform float noise_sample_size = .1;
-uniform float animation_speed = .025;
+uniform float animation_speed = 0.025;
 
 varying float height;
 
@@ -26,6 +26,6 @@ void vertex() {
 void fragment(){
 	ROUGHNESS = .1;
 	SPECULAR = height;
-	ALPHA = fresnel(NORMAL,VIEW_MATRIX);
+	ALPHA = fresnel(NORMAL,VIEW_MATRIX)*4.;
 	ALBEDO = bubble_color.rgb;
 }

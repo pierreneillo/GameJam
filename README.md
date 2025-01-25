@@ -1,14 +1,17 @@
-TODO:
--Music (G)
--Graphics (D)
--Bubbles design (P)
--Simple Enemies 
--Simple Obstacles
--Burst bubbles
+## TODO
+### Maintenant
+- Améliorer les graphiques pour les personnages et les obstacles (D)
+- Définir le comportement des ennemis proprement et les implémenter (P)
+- Faire un système de pv
 
+### Plus tard
+- Boss
+- Music
+- Graphics (D)
+- Bubbles design (P)
+- Burst bubbles
 
-
-GAME DESIGN:
+## GAME DESIGN
 Chewing-gum to "capture" things
 Platformer but with bubbles to bounce on
 Planet-like gravity (max 2 planets taken into account for the gravity system)

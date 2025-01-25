@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://crnfuim378df"]
+
+[ext_resource type="PackedScene" uid="uid://cjhs1ujkapum3" path="res://pv_bubble.tscn" id="1_hmsi1"]
+
+[node name="HUD" type="Node2D"]
+
+[node name="StaticBody2D" parent="." instance=ExtResource("1_hmsi1")]
+position = Vector2(-5, -7)
+
+[node name="StaticBody2D" parent="StaticBody2D" instance=ExtResource("1_hmsi1")]
+position = Vector2(112, 0)
+
+[node name="StaticBody2D2" parent="." instance=ExtResource("1_hmsi1")]
+position = Vector2(219, -7)

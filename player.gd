@@ -2,27 +2,28 @@ extends RigidBody2D
 
 @export var dirMultiplier = 500
 @export var impulsMultiplier = 20000
+@export var maxJumps = 2
+@export var maxSpeed = 450@export var k = 200
 
 var debugChurch
 var bulletScene = preload("res://bullet.tscn")
 
 var anchor
+var nbJumps=0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	anchor = get_tree().get_nodes_in_group("anchor")[0]
 	debugChurch = get_tree().get_nodes_in_group("debugChurch")[0]
-	pass # Replace with function body.
-
+	$HUD.visible=true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-
-
+func _physics_process(delta):
 
 	var toAnchor = anchor.position - position
 	var toMouse = get_viewport().get_mouse_position() - position
 	var anchorDist = toAnchor.length()
-	var forceMultiplier = anchorDist
+	var forceMultiplier = k/anchorDist
 
 	# Gravity model for now, independant of the distance to the center of the bubble
 	var anchorForce = toAnchor.normalized() * forceMultiplier
@@ -46,17 +47,20 @@ func _process(delta):
 
 	if Input.is_action_just_pressed("Inthebubble"): #need to check if is on the ground
 		impuls=toAnchor
-	if Input.is_action_just_pressed("Jump") and isOnGround: #need to check if is not in the air already
+	if Input.is_action_just_pressed("Jump") and (isOnGround or nbJumps<maxJumps): #need to check if is not in the air already
 		impuls=-toAnchor
-	if Input.is_action_pressed("Left") and (isOnGround):
+		nbJumps+=1
+	if Input.is_action_pressed("Left"):
 		dir=-Vector2(toAnchor.y,-toAnchor.x)
-	if Input.is_action_pressed("Right") and (isOnGround):
+	if Input.is_action_pressed("Right"):
 		dir=Vector2(toAnchor.y,-toAnchor.x)
+	if isOnGround and nbJumps>=maxJumps:
+		nbJumps=0
 
 	if Input.is_action_just_pressed("click"):
 		var b = bulletScene.instantiate()
 		get_tree().get_current_scene().add_child(b)
-
+	
 
 
 		# Set the position and impulse
@@ -67,8 +71,13 @@ func _process(delta):
 		bulletRecoil = -toMouse.normalized()*20000
 	var dirForce=dir.normalized()*dirMultiplier
 	var impulsForce=impuls.normalized()*impulsMultiplier
-
 	var dragForce = -linear_velocity.normalized() * 10
-
+	
 	var totalForce = anchorForce + dirForce + impulsForce + dragForce + bulletRecoil
 	apply_force(totalForce)
+	if linear_velocity.length() > maxSpeed:
+		# Calcule une force opposée proportionnelle au dépassement
+		var excess_speed = linear_velocity.length() - maxSpeed
+		var braking_force = -linear_velocity.normalized() * excess_speed * 10
+		apply_force(braking_force)
+	
