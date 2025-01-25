@@ -1,9 +1,10 @@
 ## TODO
 ### Maintenant
 - Intégrer la bulle à la scène (G)
-- Améliorer les graphiques pour les personnages et les obstacles
+- Améliorer les graphiques pour les personnages et les obstacles (D)
 - Définir le comportement des ennemis proprement et les implémenter (P)
 - Faire un système de pv
+- Calibrer les mouvements du personnage: force, inertie, etc
 ### Plus tard
 - Boss
 - Music
