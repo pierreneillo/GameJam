@@ -2,6 +2,7 @@ extends RigidBody2D
 
 @export var dirMultiplier = 500
 @export var impulsMultiplier = 20000
+@export var k = 200
 
 var debugChurch
 var bulletScene = preload("res://bullet.tscn")
@@ -15,14 +16,12 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-
-
+func _physics_process(delta):
 
 	var toAnchor = anchor.position - position
 	var toMouse = get_viewport().get_mouse_position() - position
 	var anchorDist = toAnchor.length()
-	var forceMultiplier = anchorDist
+	var forceMultiplier = k/anchorDist
 
 	# Gravity model for now, independant of the distance to the center of the bubble
 	var anchorForce = toAnchor.normalized() * forceMultiplier
