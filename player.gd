@@ -45,6 +45,7 @@ func _physics_process(delta):
 
 	var bulletRecoil = Vector2(0,0)
 
+	var frogAnim = 0
 	var isOnGround = (result != {})
 
 	if Input.is_action_just_pressed("Inthebubble"): #need to check if is on the ground
@@ -54,10 +55,10 @@ func _physics_process(delta):
 		nbJumps+=1
 	if Input.is_action_pressed("Left"):
 		dir=-Vector2(toAnchor.y,-toAnchor.x)
-		get_child(0).get_child(0).flip_h = true
+		frogAnim = 0
 		
 	if Input.is_action_pressed("Right"):
-		get_child(0).get_child(0).flip_h = false
+		frogAnim = 1
 		dir=Vector2(toAnchor.y,-toAnchor.x)
 	if isOnGround and nbJumps>=maxJumps:
 		nbJumps=0
@@ -65,17 +66,39 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("click"):
 		var b = bulletScene.instantiate()
 		get_tree().get_current_scene().add_child(b)
-		
-	#var
-	
-
-
 		# Set the position and impulse
-
 		b.position = position + toMouse.normalized().rotated((randf()-0.5)*0.5)*100
 		b.rotation = toMouse.angle() + PI/2
 		b.apply_force(toMouse.normalized()*50000)
 		bulletRecoil = -toMouse.normalized()*10000
+	
+	
+	if not isOnGround:
+		frogAnim = 2
+	
+	if frogAnim == 0:
+		# Left
+		get_child(0).get_child(0).flip_h = true
+		
+		get_child(0).get_child(0).visible = true
+		get_child(0).get_child(1).visible = false
+	elif frogAnim == 1:
+		# Right
+		get_child(0).get_child(0).flip_h = false
+		
+		get_child(0).get_child(0).visible = true
+		get_child(0).get_child(1).visible = false
+	else: 
+		get_child(0).get_child(0).visible = false
+		get_child(0).get_child(1).visible = true
+		get_child(0).get_child(1).rotation = toMouse.angle() - rotation + PI/2
+		
+		
+		# Flying
+		
+		
+		
+		
 	var dirForce=dir.normalized()*dirMultiplier
 	var impulsForce=impuls.normalized()*impulsMultiplier
 	var dragForce = -linear_velocity.normalized() * 10
