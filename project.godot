@@ -60,7 +60,7 @@ Gun={
 
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Ennemies"
-2d_physics/layer_3="Obstacles & Map"
+2d_physics/layer_3="Obstacles & "
 2d_physics/layer_4="Projectiles"
 
 [physics]
