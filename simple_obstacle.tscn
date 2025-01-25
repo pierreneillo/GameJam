@@ -2,7 +2,28 @@
 
 [ext_resource type="Texture2D" uid="uid://3hkai7iie0yu" path="res://assets/bubble.png" id="1_5dp65"]
 
-[node name="SimpleObstacle" type="Node2D"]
+[node name="SimpleObstacle" type="RigidBody2D"]
+position = Vector2(-24, 1)
+collision_layer = 4
+collision_mask = 11
+mass = 0.001
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-28, 64)
+scale = Vector2(0.0742499, 0.0742499)
 texture = ExtResource("1_5dp65")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(69, 50)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("1_5dp65")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(37, 131)
+scale = Vector2(0.062, 0.062)
+texture = ExtResource("1_5dp65")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+visible = false
+position = Vector2(24, 78)
+polygon = PackedVector2Array(-54, -79, 45, -79, 88, -57, 90, -5, 57, 22, 65, 66, 46, 95, 7, 105, -31, 80, -39, 49, -85, 39, -108, 13, -114, -30, -93, -63)

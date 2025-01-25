@@ -56,6 +56,13 @@ Gun={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Ennemies"
+2d_physics/layer_3="Obstacles & Map"
+2d_physics/layer_4="Projectiles"
+
 [physics]
 
 2d/default_gravity=0.0

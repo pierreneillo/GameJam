@@ -5,25 +5,28 @@
 [sub_resource type="SphereMesh" id="SphereMesh_kvmfs"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n1ehe"]
-radius = 100.045
+radius = 72.3395
 
 [node name="Player" type="RigidBody2D"]
+collision_mask = 14
+gravity_scale = 0.0
 
 [node name="Sprite" type="Sprite2D" parent="."]
 scale = Vector2(211.5, 211.5)
 
 [node name="Body" type="MeshInstance2D" parent="Sprite"]
 modulate = Color(1, 0.588235, 1, 1)
+scale = Vector2(0.7, 0.7)
 mesh = SubResource("SphereMesh_fgrok")
 
 [node name="LeftEye" type="MeshInstance2D" parent="Sprite"]
-position = Vector2(-0.2, -0.165)
-scale = Vector2(0.1, 0.1)
+position = Vector2(-0.14, -0.116)
+scale = Vector2(0.07, 0.07)
 mesh = SubResource("SphereMesh_kvmfs")
 
 [node name="RightEye" type="MeshInstance2D" parent="Sprite"]
-position = Vector2(0.2, -0.165)
-scale = Vector2(0.1, 0.1)
+position = Vector2(0.14, -0.116)
+scale = Vector2(0.07, 0.07)
 mesh = SubResource("SphereMesh_kvmfs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
