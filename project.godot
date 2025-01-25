@@ -75,3 +75,4 @@ Gun={
 [rendering]
 
 environment/defaults/default_clear_color=Color(0.445088, 0.67165, 0.764457, 1)
+viewport/transparent_background=true

@@ -64,7 +64,7 @@ func _process(delta):
 		b.position = position + toMouse.normalized()*100
 		b.rotation = toMouse.angle() + PI/2
 		b.apply_force(toMouse.normalized()*100000)
-		bulletRecoil = -toMouse.normalized()*10000
+		bulletRecoil = -toMouse.normalized()*20000
 	var dirForce=dir.normalized()*dirMultiplier
 	var impulsForce=impuls.normalized()*impulsMultiplier
 	
