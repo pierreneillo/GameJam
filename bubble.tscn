@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://rpgiegdn5u7b"]
+
+[ext_resource type="Material" uid="uid://1y5bkmig35c3" path="res://bubble_shader.tres" id="1_s8mrw"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_y6uvw"]
+material = ExtResource("1_s8mrw")
+
+[node name="Bubble" type="Node3D"]
+
+[node name="Bubble" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_y6uvw")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.932946)
+visible = false
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.38643, 0)

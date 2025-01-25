@@ -1,5 +1,6 @@
 shader_type canvas_item;
 
+uniform sampler2D noise_texture;
 
 float noise(float r,float theta,float t){
 	return 1.;
@@ -11,6 +12,10 @@ float intensity(float radius){
 	}else{
 		return 0.;
 	}
+}
+
+void vertex(){
+	float height
 }
 
 void fragment() {
