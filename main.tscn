@@ -1,6 +1,5 @@
 [gd_scene load_steps=8 format=3 uid="uid://b3b23gwyceno6"]
 
-[ext_resource type="Script" path="res://main.gd" id="1_5w3qk"]
 [ext_resource type="Script" path="res://player.gd" id="1_k27p8"]
 [ext_resource type="Texture2D" uid="uid://d0s88h1vv63dm" path="res://assets/church2.jpeg" id="5_f6s4g"]
 [ext_resource type="Texture2D" uid="uid://3hkai7iie0yu" path="res://assets/bubble.png" id="6_d1w1x"]
@@ -10,7 +9,6 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_0uqaw"]
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_5w3qk")
 
 [node name="Player" parent="." instance=ExtResource("6_v7rn5")]
 z_index = 2
