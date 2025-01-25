@@ -40,6 +40,8 @@ func _process(delta):
 	debugChurch.position =  position - normalVector*80
 	var result = space_state.intersect_ray(query)
 	
+	var bulletRecoil = Vector2(0,0)
+	
 	var isOnGround = (result != {})
 
 	if Input.is_action_just_pressed("Inthebubble"): #need to check if is on the ground
@@ -62,12 +64,13 @@ func _process(delta):
 		b.position = position + toMouse.normalized()*100
 		b.rotation = toMouse.angle() + PI/2
 		b.apply_force(toMouse.normalized()*100000)
+		bulletRecoil = -toMouse.normalized()*10000
 	var dirForce=dir.normalized()*dirMultiplier
 	var impulsForce=impuls.normalized()*impulsMultiplier
 	
 	var dragForce = -linear_velocity.normalized() * 10
 	
-	var totalForce = anchorForce + dirForce + impulsForce + dragForce
+	var totalForce = anchorForce + dirForce + impulsForce + dragForce + bulletRecoil
 	apply_force(totalForce)
 	
 	
