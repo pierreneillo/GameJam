@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b3b23gwyceno6"]
+[gd_scene load_steps=9 format=3 uid="uid://b3b23gwyceno6"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_k27p8"]
 [ext_resource type="Script" path="res://bigBubble.gd" id="3_ed3lf"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://anchor.gd" id="4_xwty3"]
 [ext_resource type="PackedScene" uid="uid://xw08o0xwmmy5" path="res://player.tscn" id="6_v7rn5"]
 [ext_resource type="PackedScene" uid="uid://bmafchkmkuw5x" path="res://simple_obstacle.tscn" id="6_xnntk"]
+[ext_resource type="PackedScene" uid="uid://bv1w3c5qpoxfb" path="res://big_bubble.tscn" id="7_sw2d6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ou4wl"]
 radius = 657.724
@@ -33,11 +34,12 @@ script = ExtResource("4_xwty3")
 
 [node name="Player" parent="." instance=ExtResource("6_v7rn5")]
 position = Vector2(235, 157)
-collision_mask = 14
 script = ExtResource("1_k27p8")
 
 [node name="SimpleObstacle" parent="." instance=ExtResource("6_xnntk")]
 position = Vector2(858, 292)
 rotation = -2.46608
-collision_layer = 4
-collision_mask = 11
+disable_mode = 1
+
+[node name="StaticBody2D" parent="." instance=ExtResource("7_sw2d6")]
+position = Vector2(535, 659)
