@@ -3,7 +3,8 @@
 [ext_resource type="Script" path="res://player.gd" id="1_k27p8"]
 [ext_resource type="PackedScene" uid="uid://xw08o0xwmmy5" path="res://player.tscn" id="6_v7rn5"]
 [ext_resource type="PackedScene" uid="uid://bmafchkmkuw5x" path="res://simple_obstacle.tscn" id="6_xnntk"]
-[ext_resource type="PackedScene" uid="uid://bv1w3c5qpoxfb" path="res://big_bubble.tscn" id="7_sw2d6"]
+[ext_resource type="PackedScene" uid="uid://dvrkud5pwx44j" path="res://ennemis.tscn" id="7_shp53"]
+[ext_resource type="PackedScene" path="res://big_bubble.tscn" id="7_sw2d6"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -23,3 +24,9 @@ z_index = -1
 position = Vector2(535, 659)
 collision_layer = 4
 collision_mask = 11
+
+[node name="Enemies" parent="." instance=ExtResource("7_shp53")]
+
+[node name="debugChurch" type="Sprite2D" parent="." groups=["debugChurch"]]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_f6s4g")
