@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-@export var distMultiplier = 500
+@export var dirMultiplier = 500
 @export var impulsMultiplier = 20000
 
 var anchor
@@ -31,7 +31,7 @@ func _process(delta):
 		dir=-Vector2(toAnchor.y,-toAnchor.x)
 	if Input.is_action_pressed("Right"):
 		dir=Vector2(toAnchor.y,-toAnchor.x)
-	var dirForce=dir.normalized()*distMultiplier
+	var dirForce=dir.normalized()*dirMultiplier
 	var impulsForce=impuls.normalized()*impulsMultiplier
 	var totalForce = anchorForce + dirForce + impulsForce
 	apply_force(totalForce)
