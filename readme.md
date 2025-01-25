@@ -6,6 +6,8 @@ TODO:
 -Simple Obstacles
 -Burst bubbles
 
+
+
 GAME DESIGN:
 Chewing-gum to "capture" things
 Platformer but with bubbles to bounce on

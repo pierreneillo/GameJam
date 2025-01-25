@@ -1,36 +1,36 @@
 [gd_scene load_steps=4 format=3 uid="uid://xw08o0xwmmy5"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_n1ehe"]
+radius = 72.3395
+
 [sub_resource type="SphereMesh" id="SphereMesh_fgrok"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_kvmfs"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_n1ehe"]
-radius = 72.3395
 
 [node name="Player" type="RigidBody2D"]
 collision_mask = 14
 gravity_scale = 0.0
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.3, 0.3)
+shape = SubResource("CircleShape2D_n1ehe")
+
+[node name="Sprite" type="Sprite2D" parent="CollisionShape2D"]
 scale = Vector2(211.5, 211.5)
 
-[node name="Body" type="MeshInstance2D" parent="Sprite"]
+[node name="Body" type="MeshInstance2D" parent="CollisionShape2D/Sprite"]
 modulate = Color(1, 0.588235, 1, 1)
 scale = Vector2(0.7, 0.7)
 mesh = SubResource("SphereMesh_fgrok")
 
-[node name="LeftEye" type="MeshInstance2D" parent="Sprite"]
+[node name="LeftEye" type="MeshInstance2D" parent="CollisionShape2D/Sprite"]
 position = Vector2(-0.14, -0.116)
 scale = Vector2(0.07, 0.07)
 mesh = SubResource("SphereMesh_kvmfs")
 
-[node name="RightEye" type="MeshInstance2D" parent="Sprite"]
+[node name="RightEye" type="MeshInstance2D" parent="CollisionShape2D/Sprite"]
 position = Vector2(0.14, -0.116)
 scale = Vector2(0.07, 0.07)
 mesh = SubResource("SphereMesh_kvmfs")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-shape = SubResource("CircleShape2D_n1ehe")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
