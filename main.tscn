@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://b3b23gwyceno6"]
+[gd_scene load_steps=7 format=3 uid="uid://b3b23gwyceno6"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_k27p8"]
+[ext_resource type="PackedScene" uid="uid://crnfuim378df" path="res://hud.tscn" id="3_7wyuv"]
 [ext_resource type="Texture2D" uid="uid://d0s88h1vv63dm" path="res://assets/church2.jpeg" id="5_f6s4g"]
 [ext_resource type="PackedScene" uid="uid://bv1w3c5qpoxfb" path="res://big_bubble.tscn" id="6_jt6oh"]
 [ext_resource type="PackedScene" path="res://player.tscn" id="6_v7rn5"]
@@ -13,6 +14,8 @@ z_index = 2
 position = Vector2(235, 157)
 script = ExtResource("1_k27p8")
 impulsMultiplier = 50000
+
+[node name="HUD" parent="Player" instance=ExtResource("3_7wyuv")]
 
 [node name="SimpleObstacle" parent="." instance=ExtResource("6_xnntk")]
 z_index = 1

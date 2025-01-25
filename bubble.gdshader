@@ -26,6 +26,6 @@ void vertex() {
 void fragment(){
 	ROUGHNESS = .1;
 	SPECULAR = height;
-	ALPHA = fresnel(NORMAL,VIEW_MATRIX);
+	ALPHA = fresnel(NORMAL,VIEW_MATRIX)*4.;
 	ALBEDO = bubble_color.rgb;
 }

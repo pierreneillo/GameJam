@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjhs1ujkapum3"]
+
+[ext_resource type="PackedScene" uid="uid://bb14gcbakabv4" path="res://bubble_pv.tscn" id="1_46j8w"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_hxl2p"]
+viewport_path = NodePath("SubViewport")
+
+[node name="StaticBody2D" type="MeshInstance2D"]
+
+[node name="SubViewport" type="SubViewport" parent="."]
+use_taa = true
+
+[node name="Bubble_pv" parent="SubViewport" instance=ExtResource("1_46j8w")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(60.7893, 62.7893)
+scale = Vector2(0.219573, 0.219573)
+texture = SubResource("ViewportTexture_hxl2p")

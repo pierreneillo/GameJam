@@ -14,7 +14,7 @@ var nbJumps=0
 func _ready():
 	anchor = get_tree().get_nodes_in_group("anchor")[0]
 	debugChurch = get_tree().get_nodes_in_group("debugChurch")[0]
-
+	$HUD.visible=true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
