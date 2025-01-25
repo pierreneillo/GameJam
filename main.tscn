@@ -12,6 +12,7 @@
 z_index = 2
 position = Vector2(235, 157)
 script = ExtResource("1_k27p8")
+impulsMultiplier = 50000
 
 [node name="SimpleObstacle" parent="." instance=ExtResource("6_xnntk")]
 z_index = 1
