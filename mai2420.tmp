@@ -1,0 +1,45 @@
+[gd_scene load_steps=9 format=3 uid="uid://b3b23gwyceno6"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_k27p8"]
+[ext_resource type="Texture2D" uid="uid://d0s88h1vv63dm" path="res://assets/church2.jpeg" id="5_f6s4g"]
+[ext_resource type="Texture2D" uid="uid://faxdnpgy8jw1" path="res://assets/rocket.png" id="6_1ar3l"]
+[ext_resource type="Script" path="res://bullet.gd" id="6_e0rkj"]
+[ext_resource type="PackedScene" uid="uid://xw08o0xwmmy5" path="res://player.tscn" id="6_v7rn5"]
+[ext_resource type="PackedScene" uid="uid://bmafchkmkuw5x" path="res://simple_obstacle.tscn" id="6_xnntk"]
+[ext_resource type="PackedScene" uid="uid://bv1w3c5qpoxfb" path="res://big_bubble.tscn" id="7_sw2d6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kf60d"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("6_v7rn5")]
+z_index = 2
+position = Vector2(235, 157)
+script = ExtResource("1_k27p8")
+
+[node name="SimpleObstacle" parent="." instance=ExtResource("6_xnntk")]
+z_index = 1
+position = Vector2(858, 292)
+rotation = -2.46608
+disable_mode = 1
+
+[node name="StaticBody2D" parent="." groups=["anchor"] instance=ExtResource("7_sw2d6")]
+visible = false
+z_index = -1
+position = Vector2(535, 659)
+collision_layer = 4
+collision_mask = 11
+
+[node name="debugChurch" type="Sprite2D" parent="." groups=["debugChurch"]]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_f6s4g")
+
+[node name="bullet" type="RigidBody2D" parent="."]
+script = ExtResource("6_e0rkj")
+
+[node name="Sprite2D" type="Sprite2D" parent="bullet"]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("6_1ar3l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bullet"]
+shape = SubResource("CapsuleShape2D_kf60d")
