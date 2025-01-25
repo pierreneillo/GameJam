@@ -2,6 +2,9 @@ TODO:
 -Music (G)
 -Graphics (D)
 -Bubbles design (P)
+-Simple Enemies 
+-Simple Obstacles
+-Burst bubbles
 
 GAME DESIGN:
 Chewing-gum to "capture" things
