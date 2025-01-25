@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://rpgiegdn5u7b" path="res://bubble.tscn" id="1_uny61"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sy2o6"]
-radius = 99.0
+radius = 94.4034
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_hxl2p"]
 viewport_path = NodePath("SubViewport")
@@ -11,6 +11,7 @@ viewport_path = NodePath("SubViewport")
 [node name="StaticBody2D" type="StaticBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
 scale = Vector2(5, 5)
 shape = SubResource("CircleShape2D_sy2o6")
 
