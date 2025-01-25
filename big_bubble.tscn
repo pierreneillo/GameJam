@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://rpgiegdn5u7b" path="res://bubble.tscn" id="1_uny61"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sy2o6"]
-radius = 56.0089
+radius = 75.3518
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_j4yn4"]
 viewport_path = NodePath("SubViewport")
@@ -24,6 +24,6 @@ use_taa = true
 [node name="Bubble" parent="SubViewport" instance=ExtResource("1_uny61")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-1.90735e-06, 1.90735e-06)
-scale = Vector2(0.750992, 0.750992)
+position = Vector2(-1, 0)
+scale = Vector2(1.03175, 1.03175)
 texture = SubResource("ViewportTexture_j4yn4")
