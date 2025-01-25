@@ -64,13 +64,15 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("click"):
 		var b = bulletScene.instantiate()
 		get_tree().get_current_scene().add_child(b)
+		
+	#var
 	
 
 
 		# Set the position and impulse
 
-		b.position = position + toMouse.normalized()*100
-		b.rotation = toMouse.angle() + PI/2 + randf()*0.1
+		b.position = position + toMouse.normalized().rotated((randf()-0.5)*0.5)*100
+		b.rotation = toMouse.angle() + PI/2
 		b.apply_force(toMouse.normalized()*50000)
 		bulletRecoil = -toMouse.normalized()*10000
 	var dirForce=dir.normalized()*dirMultiplier
