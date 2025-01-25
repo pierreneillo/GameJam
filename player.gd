@@ -3,7 +3,8 @@ extends RigidBody2D
 @export var dirMultiplier = 500
 @export var impulsMultiplier = 20000
 @export var maxJumps = 2
-@export var maxSpeed = 450@export var k = 200
+@export var maxSpeed = 450
+@export var k = 200
 
 var debugChurch
 var bulletScene = preload("res://bullet.tscn")
