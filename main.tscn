@@ -1,37 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://b3b23gwyceno6"]
-[gd_scene load_steps=9 format=3 uid="uid://b3b23gwyceno6"]
+[gd_scene load_steps=5 format=3 uid="uid://b3b23gwyceno6"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_k27p8"]
-[ext_resource type="Script" path="res://bigBubble.gd" id="3_ed3lf"]
-[ext_resource type="Texture2D" uid="uid://3hkai7iie0yu" path="res://assets/bubble.png" id="4_pi1h2"]
-[ext_resource type="Script" path="res://anchor.gd" id="4_xwty3"]
 [ext_resource type="PackedScene" uid="uid://xw08o0xwmmy5" path="res://player.tscn" id="6_v7rn5"]
 [ext_resource type="PackedScene" uid="uid://bmafchkmkuw5x" path="res://simple_obstacle.tscn" id="6_xnntk"]
-[ext_resource type="PackedScene" uid="uid://dvrkud5pwx44j" path="res://ennemis.tscn" id="7_shp53"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ou4wl"]
-radius = 657.724
+[ext_resource type="PackedScene" uid="uid://bv1w3c5qpoxfb" path="res://big_bubble.tscn" id="7_sw2d6"]
 
 [node name="Node2D" type="Node2D"]
-
-[node name="bigBubble" type="StaticBody2D" parent="." groups=["anchor"]]
-position = Vector2(537, 658)
-scale = Vector2(3, 3)
-collision_layer = 4
-collision_mask = 9
-script = ExtResource("3_ed3lf")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="bigBubble"]
-visible = false
-position = Vector2(-0.333328, -0.99999)
-scale = Vector2(0.25, 0.25)
-shape = SubResource("CircleShape2D_ou4wl")
-
-[node name="bubbleSprite" type="Sprite2D" parent="bigBubble"]
-position = Vector2(-0.333344, -0.333334)
-scale = Vector2(0.191333, 0.191333)
-texture = ExtResource("4_pi1h2")
-script = ExtResource("4_xwty3")
 
 [node name="Player" parent="." instance=ExtResource("6_v7rn5")]
 position = Vector2(235, 157)
@@ -42,7 +16,7 @@ position = Vector2(858, 292)
 rotation = -2.46608
 disable_mode = 1
 
-[node name="StaticBody2D" parent="." instance=ExtResource("7_sw2d6")]
+[node name="StaticBody2D" parent="." groups=["anchor"] instance=ExtResource("7_sw2d6")]
 position = Vector2(535, 659)
-
-[node name="Enemies" parent="." instance=ExtResource("7_shp53")]
+collision_layer = 4
+collision_mask = 11
