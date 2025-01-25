@@ -20,7 +20,7 @@ impulsMultiplier = 50000
 [node name="SimpleObstacle" parent="." instance=ExtResource("6_xnntk")]
 z_index = 1
 position = Vector2(858, 292)
-rotation = -2.46608
+rotation = -1.72104
 disable_mode = 1
 
 [node name="debugChurch" type="Sprite2D" parent="." groups=["debugChurch"]]
