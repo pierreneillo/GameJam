@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://b3b23gwyceno6"]
+[gd_scene load_steps=7 format=3 uid="uid://b3b23gwyceno6"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_k27p8"]
 [ext_resource type="Texture2D" uid="uid://d0s88h1vv63dm" path="res://assets/church2.jpeg" id="5_f6s4g"]
@@ -27,6 +27,8 @@ texture = ExtResource("5_f6s4g")
 
 [node name="worldBubble" type="StaticBody2D" parent="." groups=["anchor"]]
 position = Vector2(568, 316)
+collision_layer = 4
+collision_mask = 11
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="worldBubble"]
 scale = Vector2(30, 30)
