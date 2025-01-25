@@ -11,7 +11,6 @@ var anchor
 func _ready():
 	anchor = get_tree().get_nodes_in_group("anchor")[0]
 	debugChurch = get_tree().get_nodes_in_group("debugChurch")[0]
-	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
