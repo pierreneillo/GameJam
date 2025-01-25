@@ -1,12 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bv1w3c5qpoxfb"]
+[gd_scene load_steps=3 format=3 uid="uid://bv1w3c5qpoxfb"]
 
-[ext_resource type="PackedScene" uid="uid://rpgiegdn5u7b" path="res://bubble.tscn" id="1_uny61"]
+[ext_resource type="Texture2D" uid="uid://bgc04ayqimlhs" path="res://bubble_small.png" id="1_ed4vr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sy2o6"]
 radius = 56.0089
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_hxl2p"]
-viewport_path = NodePath("SubViewport")
 
 [node name="StaticBody2D" type="StaticBody2D"]
 collision_layer = 4
@@ -14,15 +11,14 @@ collision_mask = 11
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 1
-scale = Vector2(5, 5)
+scale = Vector2(3, 3)
 shape = SubResource("CircleShape2D_sy2o6")
 
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+position = Vector2(-0.2, -0.2)
+scale = Vector2(0.024, 0.024)
+texture = ExtResource("1_ed4vr")
+
 [node name="SubViewport" type="SubViewport" parent="."]
+own_world_3d = true
 use_taa = true
-
-[node name="Bubble" parent="SubViewport" instance=ExtResource("1_uny61")]
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-1, -0.999999)
-scale = Vector2(1.27899, 1.27899)
-texture = SubResource("ViewportTexture_hxl2p")

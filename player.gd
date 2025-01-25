@@ -16,7 +16,7 @@ var nbJumps=0
 func _ready():
 	anchor = get_tree().get_nodes_in_group("anchor")[0]
 	debugChurch = get_tree().get_nodes_in_group("debugChurch")[0]
-	$HUD.visible=true
+	#$HUD.visible=true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -24,7 +24,7 @@ func _physics_process(delta):
 	var toAnchor = anchor.position - position
 	var toMouse = get_viewport().get_mouse_position() - position
 	var anchorDist = toAnchor.length()
-	var forceMultiplier = k/anchorDist
+	var forceMultiplier = 1000 # k/anchorDist
 
 	# Gravity model for now, independant of the distance to the center of the bubble
 	var anchorForce = toAnchor.normalized() * forceMultiplier
@@ -53,7 +53,10 @@ func _physics_process(delta):
 		nbJumps+=1
 	if Input.is_action_pressed("Left"):
 		dir=-Vector2(toAnchor.y,-toAnchor.x)
+		get_child(0).get_child(0).flip_h = true
+		
 	if Input.is_action_pressed("Right"):
+		get_child(0).get_child(0).flip_h = false
 		dir=Vector2(toAnchor.y,-toAnchor.x)
 	if isOnGround and nbJumps>=maxJumps:
 		nbJumps=0
@@ -67,9 +70,9 @@ func _physics_process(delta):
 		# Set the position and impulse
 
 		b.position = position + toMouse.normalized()*100
-		b.rotation = toMouse.angle() + PI/2
-		b.apply_force(toMouse.normalized()*100000)
-		bulletRecoil = -toMouse.normalized()*20000
+		b.rotation = toMouse.angle() + PI/2 + randf()*0.1
+		b.apply_force(toMouse.normalized()*50000)
+		bulletRecoil = -toMouse.normalized()*10000
 	var dirForce=dir.normalized()*dirMultiplier
 	var impulsForce=impuls.normalized()*impulsMultiplier
 	var dragForce = -linear_velocity.normalized() * 10

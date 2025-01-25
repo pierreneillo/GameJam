@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cjhs1ujkapum3"]
+[gd_scene load_steps=4 format=3 uid="uid://cjhs1ujkapum3"]
 
 [ext_resource type="PackedScene" uid="uid://bb14gcbakabv4" path="res://bubble_pv.tscn" id="1_46j8w"]
+
+[sub_resource type="World3D" id="World3D_4sqf4"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_hxl2p"]
 viewport_path = NodePath("SubViewport")
@@ -8,6 +10,7 @@ viewport_path = NodePath("SubViewport")
 [node name="StaticBody2D" type="MeshInstance2D"]
 
 [node name="SubViewport" type="SubViewport" parent="."]
+world_3d = SubResource("World3D_4sqf4")
 use_taa = true
 
 [node name="Bubble_pv" parent="SubViewport" instance=ExtResource("1_46j8w")]
