@@ -5,6 +5,7 @@ extends RigidBody2D
 @export var maxJumps = 2
 @export var maxSpeed = 450
 @export var k = 200
+@export var marge = 30 
 
 var debugChurch
 var bulletScene = preload("res://bullet.tscn")
@@ -38,7 +39,7 @@ func _physics_process(delta):
 	var normalVector = (Vector2.UP.rotated( transform.get_rotation())).normalized()
 	var space_state = get_world_2d().direct_space_state
 
-	var query = PhysicsRayQueryParameters2D.create(position, position - normalVector*80 )
+	var query = PhysicsRayQueryParameters2D.create(position, position - normalVector*marge )
 	debugChurch.position =  position - normalVector*80
 	var result = space_state.intersect_ray(query)
 

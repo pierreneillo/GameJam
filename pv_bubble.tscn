@@ -7,7 +7,7 @@
 [sub_resource type="ViewportTexture" id="ViewportTexture_hxl2p"]
 viewport_path = NodePath("SubViewport")
 
-[node name="StaticBody2D" type="MeshInstance2D"]
+[node name="StaticBody2D2" type="MeshInstance2D"]
 
 [node name="SubViewport" type="SubViewport" parent="."]
 world_3d = SubResource("World3D_4sqf4")

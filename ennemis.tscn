@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://cq1uyjxn8pluo"]
+[gd_scene load_steps=3 format=3 uid="uid://gye76ie2m7fw"]
 
 [ext_resource type="Script" path="res://killable_enemy_1.gd" id="1_od2pi"]
 [ext_resource type="Texture2D" uid="uid://vynrpfuac7nw" path="res://3d-red-push-pin-generative-ai-png.png" id="2_skorq"]
