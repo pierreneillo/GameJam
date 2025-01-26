@@ -113,9 +113,6 @@ speed_scale = 0.5
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player") groups=["camera"]]
 position = Vector2(413, 265)
 process_callback = 0
-<<<<<<< HEAD
 position_smoothing_enabled = true
-=======
->>>>>>> 407678e3d63bbcb95946ceda0dcad3ebf4657a56
 script = ExtResource("10_wfc2i")
 player = NodePath("../Player")

@@ -83,10 +83,7 @@ func _physics_process(delta):
 			bubble2=i
 				
 	var tobubble1 = bubble1.position - position
-<<<<<<< HEAD
 	var toMouse = get_global_mouse_position() - position
-=======
->>>>>>> 407678e3d63bbcb95946ceda0dcad3ebf4657a56
 	var forceMultiplier1 = k/dist1
 	# Gravity model for now, independant of the distance to the center of the bubble
 	var bubble1Force = tobubble1.normalized() * forceMultiplier1
@@ -97,9 +94,9 @@ func _physics_process(delta):
 	
 	var dir=Vector2.ZERO
 	var impuls=Vector2.ZERO
-	var toMouse = get_viewport().get_camera_2d().position + get_viewport().get_mouse_position() - position
-	print(get_viewport().get_mouse_position()+get_viewport().get_camera_2d().position-position)
-	draw_line(position,  get_viewport().get_mouse_position() , Color.RED)
+	#var toMouse = get_viewport().get_camera_2d().position + get_viewport().get_mouse_position() - position
+	#print(get_viewport().get_mouse_position()+get_viewport().get_camera_2d().position-position)
+	#draw_line(position,  get_viewport().get_mouse_position() , Color.RED)
 	# Change direction so that the sprite is "standing" on the planet
 	set_rotation(tobubble1.angle() - PI/2)
 	'''
