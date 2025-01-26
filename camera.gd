@@ -35,7 +35,6 @@ func fit_points_to_camera(points: Array):
 	var zoom_x = width / viewport_size.x
 	var zoom_y = height / viewport_size.y
 	var padded_zoom = max(zoom_x, zoom_y) *.8
-	print(center,padded_zoom)
 	#zoom = Vector2(padded_zoom * aspect_ratio, padded_zoom)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -49,5 +48,4 @@ func _process(delta: float) -> void:
 	var bubble_surface_point = nearest_bubble.global_position + (global_position - nearest_bubble.global_position).normalized() * bubble_size
 	
 	fit_points_to_camera([player.global_position,bubble_surface_point])
-	print([player.global_position,bubble_surface_point])
 	global_position = player.global_position
