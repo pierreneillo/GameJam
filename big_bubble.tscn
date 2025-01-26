@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://rpgiegdn5u7b" path="res://bubble.tscn" id="1_uny61"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sy2o6"]
-radius = 75.3518
+radius = 74.5738
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_j4yn4"]
 viewport_path = NodePath("SubViewport")
@@ -13,17 +13,19 @@ collision_layer = 4
 collision_mask = 11
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 z_index = 1
-scale = Vector2(3, 3)
+position = Vector2(0.127991, 9.12799)
+scale = Vector2(12, 12)
 shape = SubResource("CircleShape2D_sy2o6")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 own_world_3d = true
-use_taa = true
+transparent_bg = true
+size = Vector2i(2048, 2048)
+render_target_clear_mode = 2
 
 [node name="Bubble" parent="SubViewport" instance=ExtResource("1_uny61")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-1, 0)
-scale = Vector2(1.03175, 1.03175)
 texture = SubResource("ViewportTexture_j4yn4")

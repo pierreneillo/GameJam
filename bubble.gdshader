@@ -14,11 +14,11 @@ float fresnel(vec3 normal, mat4 camera_matrix){
 	float d = dot(view_direction_world,normal_world);
 	d = abs(d);
 	d = clamp(d, 0., 1.);
-	
+
 	return 1. - d;
 }
 
-void vertex() {  
+void vertex() {
 	height = texture(noise_tex,VERTEX.xz * noise_sample_size + vec2(TIME * animation_speed)).r;
 	VERTEX += NORMAL * height * height_multiplier;
 }

@@ -12,7 +12,10 @@ mesh = SubResource("SphereMesh_y6uvw")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.932946)
-visible = false
+current = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.965926, 0.0769447, 0.247117, -0.258819, 0.287162, 0.922253, 0, -0.954787, 0.297292, 2, 4.35483, 1.04245)
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.993768, -0.111469, 0, 0.111469, 0.993768, 0, -2.04777, 10.9163)
