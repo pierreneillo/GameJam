@@ -147,7 +147,7 @@ func _physics_process(delta):
 		# Set the position and impulse
 		b.position = position + toMouse.normalized().rotated((randf()-0.5)*0.5)*100
 		var angle=toMouse.dot(Vector2(1,0))/toMouse.length()
-		print(toMouse,angle)
+		#print(toMouse,angle)
 		b.rotation = angle + PI/2
 		b.apply_force(toMouse.normalized()*50000)
 		bulletRecoil = -toMouse.normalized()*10000
@@ -175,7 +175,7 @@ func _physics_process(delta):
 		bubble2Force=Vector2.ZERO
 		frogAnim=2
 		if dist1>currentR:
-			print(dist1,"a",currentR)
+			#print(dist1,"a",currentR)
 			inBubble=false
 			collision_mask |= (1 << 4)
 			impulsSens=1
