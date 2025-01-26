@@ -237,17 +237,27 @@ func _physics_process(delta):
 	
 	# musicStuffs
 	
+
 	# Piano
-	if tobubble1.length() > 1800:
-		var discrepancyOne = (tobubble1.length() - 1800)
+	var discrepancyOne = ((bubbles[0].position - position).length() - 1800)
+	if (bubbles[0].position - position).length() > 1800:
 		audioStreams[0].volume_db = - discrepancyOne * 0.01 #Vector2(1.0,1.0) * exp(-discrepancy*0.002)
 	else:
 		audioStreams[0].volume_db = 0.0
-		
-	
 	
 	# Synth Chords
-	audioStreams[1].volume_db = -100
+	var discrepancyTwo = ((bubbles[1].position - position).length() - 1800)
+	if (bubbles[1].position - position).length() > 1800:
+		audioStreams[1].volume_db = - discrepancyTwo * 0.01 #Vector2(1.0,1.0) * exp(-discrepancy*0.002)
+	else:
+		audioStreams[1].volume_db = 0.0
 	
+	
+	var airMax = min(discrepancyOne,discrepancyTwo)
+	print('airmax')
+	print(airMax)
 	# Melody
-	audioStreams[2].volume_db = -100
+	var newDB = -exp(-(airMax+0)*0.005)
+	print('newDB')
+	print(newDB)
+	audioStreams[2].volume_db = newDB
