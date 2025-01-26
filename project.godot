@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [global_group]
 
 anchor="Group for anchors i.e. objects generating gravity"
+audioStreams=""
 
 [input]
 
@@ -75,4 +76,5 @@ Gun={
 
 [rendering]
 
+environment/defaults/default_clear_color=Color(0.864364, 0.619443, 0.924878, 1)
 anti_aliasing/quality/msaa_2d=1
