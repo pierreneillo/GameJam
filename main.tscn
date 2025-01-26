@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://clyc126dkob32"]
+[gd_scene load_steps=5 format=3 uid="uid://c7ssoceoweo15"]
 
-[ext_resource type="PackedScene" uid="uid://b3b23gwyceno6" path="res://level1.tscn" id="1_t1mns"]
+[ext_resource type="PackedScene" uid="uid://dl6a4dx6g7pho" path="res://level1.tscn" id="1_t1mns"]
 [ext_resource type="Script" path="res://master_camera.gd" id="2_gplkp"]
 [ext_resource type="Texture2D" uid="uid://cepqq726lxlpq" path="res://assets/gameover.png" id="2_qbp5f"]
 

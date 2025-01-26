@@ -141,7 +141,7 @@ func _physics_process(delta):
 		if gunTimer==0:
 			gunTimer+=delta
 		var b = bulletScene.instantiate()
-		get_tree().get_current_scene().add_child(b)
+		get_tree().get_current_scene().get_node("SubViewport/Level1").add_child(b)
 		# Set the position and impulse
 		b.position = position + toMouse.normalized().rotated((randf()-0.5)*0.5)*100
 		var angle=toMouse.dot(Vector2(1,0))/toMouse.length()

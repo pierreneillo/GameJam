@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b3b23gwyceno6"]
+[gd_scene load_steps=20 format=3 uid="uid://dl6a4dx6g7pho"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_k27p8"]
 [ext_resource type="PackedScene" uid="uid://crnfuim378df" path="res://hud.tscn" id="3_7wyuv"]
@@ -119,7 +119,14 @@ position_smoothing_enabled = true
 script = ExtResource("10_wfc2i")
 player = NodePath("../Player")
 
+[node name="GameOver" type="Sprite2D" parent="Camera2D"]
+visible = false
+position = Vector2(112.889, 64.4375)
+scale = Vector2(0.660301, 0.660301)
+texture = ExtResource("15_mf4dm")
+
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+visible = false
 
 [node name="ParallaxLayer1" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.1, 0.1)
@@ -274,17 +281,3 @@ autoplay = true
 [node name="sinth" type="AudioStreamPlayer" parent="soudnz" groups=["audioStreams"]]
 stream = ExtResource("13_gvebo")
 autoplay = true
-
-[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player") groups=["camera"]]
-position = Vector2(413, 265)
-zoom = Vector2(1.1, 1.1)
-process_callback = 0
-position_smoothing_enabled = true
-script = ExtResource("10_wfc2i")
-player = NodePath("../Player")
-
-[node name="GameOver" type="Sprite2D" parent="Camera2D"]
-visible = false
-position = Vector2(112.889, 64.4375)
-scale = Vector2(0.660301, 0.660301)
-texture = ExtResource("15_mf4dm")
