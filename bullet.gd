@@ -10,14 +10,18 @@ func _ready() -> void:
 	self.connect("body_entered", Callable(self,"_on_body_shape_entered"))
 	
 func _on_body_entered(body):
-	die()
+	if (body.get_collision_layer_value(2) or body.get_collision_layer_value(3) or body.get_collision_layer_value(5)):
+		die_instant()
 	
-func die(deathTime=0.01):
+func die(deathTime=1.):
 	# Do some action
 	await get_tree().create_timer(deathTime).timeout # waits for 1 second
 	# Do something afterwards
 	queue_free() # Deletes this node (self) at the end of the frame
 
+func die_instant():
+	await get_tree().create_timer(0.).timeout
+	queue_free() # Deletes this node (self) at the end of the frame
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
