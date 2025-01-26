@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b3b23gwyceno6"]
+[gd_scene load_steps=21 format=3 uid="uid://b3b23gwyceno6"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_k27p8"]
 [ext_resource type="PackedScene" uid="uid://crnfuim378df" path="res://hud.tscn" id="3_7wyuv"]
@@ -9,11 +9,12 @@
 [ext_resource type="PackedScene" uid="uid://gye76ie2m7fw" path="res://ennemis.tscn" id="7_cbqg2"]
 [ext_resource type="Texture2D" uid="uid://cnt881qqbxr40" path="res://assets/cloud-303182_1280.png" id="7_erg4f"]
 [ext_resource type="Texture2D" uid="uid://ca0mlwi0nly0o" path="res://assets/Space-Background-Image-2.jpg" id="8_o6cju"]
-[ext_resource type="Material" uid="uid://cd3ya2nj1hnmw" path="res://particles.tres" id="9_abjn4"]
+[ext_resource type="Material" uid="uid://cd64c5wqc818x" path="res://particles.tres" id="9_abjn4"]
 [ext_resource type="Script" path="res://camera.gd" id="10_wfc2i"]
 [ext_resource type="AudioStream" uid="uid://bdk2vnniwbpon" path="res://owdio/demodemodemo_pjanoo.wav" id="11_0vtfx"]
 [ext_resource type="AudioStream" uid="uid://bnmna1m2uxlwy" path="res://owdio/demodemodemo_piano.wav" id="12_3luqn"]
 [ext_resource type="AudioStream" uid="uid://glhal4nt3q2q" path="res://owdio/demodemodemo_sinth.wav" id="13_gvebo"]
+[ext_resource type="Texture2D" uid="uid://cepqq726lxlpq" path="res://assets/gameover.png" id="15_mf4dm"]
 
 [sub_resource type="Gradient" id="Gradient_vi6bo"]
 interpolation_mode = 2
@@ -142,3 +143,9 @@ process_callback = 0
 position_smoothing_enabled = true
 script = ExtResource("10_wfc2i")
 player = NodePath("../Player")
+
+[node name="GameOver" type="Sprite2D" parent="Camera2D"]
+visible = false
+position = Vector2(112.889, 64.4375)
+scale = Vector2(0.660301, 0.660301)
+texture = ExtResource("15_mf4dm")
