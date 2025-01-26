@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://clyc126dkob32"]
+[gd_scene load_steps=5 format=3 uid="uid://c7ssoceoweo15"]
 
 [ext_resource type="PackedScene" uid="uid://dl6a4dx6g7pho" path="res://level1.tscn" id="1_t1mns"]
 [ext_resource type="Script" path="res://master_camera.gd" id="2_gplkp"]
 [ext_resource type="Texture2D" uid="uid://cepqq726lxlpq" path="res://assets/gameover.png" id="2_qbp5f"]
-[ext_resource type="Texture2D" uid="uid://crf52cj5xxye8" path="res://assets/win.png" id="3_0adwq"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_er0io"]
 viewport_path = NodePath("SubViewport")
@@ -21,12 +20,6 @@ visible = false
 position = Vector2(-1.99999, -0.999997)
 scale = Vector2(0.611632, 0.611632)
 texture = ExtResource("2_qbp5f")
-
-[node name="Win" type="Sprite2D" parent="Camera2D"]
-visible = false
-position = Vector2(4.11108, 1)
-scale = Vector2(0.624074, 0.624074)
-texture = ExtResource("3_0adwq")
 
 [node name="Display" type="Sprite2D" parent="."]
 position = Vector2(576, 324)

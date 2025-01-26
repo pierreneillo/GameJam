@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dl6a4dx6g7pho"]
+[gd_scene load_steps=19 format=3 uid="uid://dl6a4dx6g7pho"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_k27p8"]
 [ext_resource type="PackedScene" uid="uid://crnfuim378df" path="res://hud.tscn" id="3_7wyuv"]
@@ -118,14 +118,7 @@ position_smoothing_enabled = true
 script = ExtResource("10_wfc2i")
 player = NodePath("../Player")
 
-[node name="GameOver" type="Sprite2D" parent="Camera2D"]
-visible = false
-position = Vector2(112.889, 64.4375)
-scale = Vector2(0.660301, 0.660301)
-texture = ExtResource("15_mf4dm")
-
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-visible = false
 
 [node name="ParallaxLayer1" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.1, 0.1)
