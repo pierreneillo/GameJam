@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://xw08o0xwmmy5"]
+[gd_scene load_steps=6 format=3 uid="uid://xw08o0xwmmy5"]
 
 [ext_resource type="Texture2D" uid="uid://7g7lk1t0hkqw" path="res://assets/frogThicjks.png" id="1_gemf7"]
 [ext_resource type="Material" uid="uid://v6upogcxr7tc" path="res://flashplayer.tres" id="1_r8n0j"]
@@ -7,6 +7,20 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_n1ehe"]
 radius = 72.3395
 
+[sub_resource type="GDScript" id="GDScript_2hhkn"]
+script/source = "extends CollisionShape2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	shape.get_rect().size
+"
+
 [node name="Player" type="RigidBody2D"]
 collision_mask = 30
 gravity_scale = 0.0
@@ -14,6 +28,7 @@ gravity_scale = 0.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.5, 0.5)
 shape = SubResource("CircleShape2D_n1ehe")
+script = SubResource("GDScript_2hhkn")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 

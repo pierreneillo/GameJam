@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b3b23gwyceno6"]
+[gd_scene load_steps=16 format=3 uid="uid://b3b23gwyceno6"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_k27p8"]
 [ext_resource type="PackedScene" uid="uid://crnfuim378df" path="res://hud.tscn" id="3_7wyuv"]
@@ -8,7 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://bmafchkmkuw5x" path="res://simple_obstacle.tscn" id="6_xnntk"]
 [ext_resource type="PackedScene" uid="uid://gye76ie2m7fw" path="res://ennemis.tscn" id="7_cbqg2"]
 [ext_resource type="Texture2D" uid="uid://cnt881qqbxr40" path="res://assets/cloud-303182_1280.png" id="7_erg4f"]
-[ext_resource type="Material" uid="uid://cd3ya2nj1hnmw" path="res://particles.tres" id="9_abjn4"]
+[ext_resource type="Material" uid="uid://cd64c5wqc818x" path="res://particles.tres" id="9_abjn4"]
+[ext_resource type="Script" path="res://camera.gd" id="10_wfc2i"]
 
 [sub_resource type="Gradient" id="Gradient_vi6bo"]
 interpolation_mode = 2
@@ -108,3 +109,9 @@ amount = 50
 process_material = SubResource("ParticleProcessMaterial_w1w8f")
 lifetime = 5.0
 speed_scale = 0.5
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
+position = Vector2(413, 265)
+position_smoothing_enabled = true
+script = ExtResource("10_wfc2i")
+player = NodePath("../Player")
