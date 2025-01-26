@@ -13,7 +13,6 @@
 [ext_resource type="AudioStream" uid="uid://bdk2vnniwbpon" path="res://owdio/demodemodemo_pjanoo.wav" id="11_0vtfx"]
 [ext_resource type="AudioStream" uid="uid://bnmna1m2uxlwy" path="res://owdio/demodemodemo_piano.wav" id="12_3luqn"]
 [ext_resource type="AudioStream" uid="uid://glhal4nt3q2q" path="res://owdio/demodemodemo_sinth.wav" id="13_gvebo"]
-[ext_resource type="Texture2D" uid="uid://cepqq726lxlpq" path="res://assets/gameover.png" id="15_mf4dm"]
 
 [sub_resource type="Gradient" id="Gradient_vi6bo"]
 interpolation_mode = 2
