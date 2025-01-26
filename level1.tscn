@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dl6a4dx6g7pho"]
+[gd_scene load_steps=21 format=3 uid="uid://b3b23gwyceno6"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_k27p8"]
 [ext_resource type="PackedScene" uid="uid://crnfuim378df" path="res://hud.tscn" id="3_7wyuv"]
@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://bdk2vnniwbpon" path="res://owdio/demodemodemo_pjanoo.wav" id="11_0vtfx"]
 [ext_resource type="AudioStream" uid="uid://bnmna1m2uxlwy" path="res://owdio/demodemodemo_piano.wav" id="12_3luqn"]
 [ext_resource type="AudioStream" uid="uid://glhal4nt3q2q" path="res://owdio/demodemodemo_sinth.wav" id="13_gvebo"]
+[ext_resource type="Texture2D" uid="uid://cepqq726lxlpq" path="res://assets/gameover.png" id="15_mf4dm"]
 
 [sub_resource type="Gradient" id="Gradient_vi6bo"]
 interpolation_mode = 2
@@ -273,3 +274,17 @@ autoplay = true
 [node name="sinth" type="AudioStreamPlayer" parent="soudnz" groups=["audioStreams"]]
 stream = ExtResource("13_gvebo")
 autoplay = true
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player") groups=["camera"]]
+position = Vector2(413, 265)
+zoom = Vector2(1.1, 1.1)
+process_callback = 0
+position_smoothing_enabled = true
+script = ExtResource("10_wfc2i")
+player = NodePath("../Player")
+
+[node name="GameOver" type="Sprite2D" parent="Camera2D"]
+visible = false
+position = Vector2(112.889, 64.4375)
+scale = Vector2(0.660301, 0.660301)
+texture = ExtResource("15_mf4dm")

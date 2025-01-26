@@ -52,7 +52,7 @@ func _ready():
 
 	
 func _on_body_shape_entered(body):
-	if (body.get_collision_layer_value(2) or body.get_collision_layer_value(4)) and invicibility==false:  # Vérifie si l'objet appartient à la layer 3
+	if (body.get_collision_layer_value(2) or body.get_collision_layer_value(4)) and invicibility==false and hearts!=0:  # Vérifie si l'objet appartient à la layer 3
 		var H=get_node("../HUD/Heart"+str(hearts))
 		H.visible=false
 		hearts-=1
@@ -145,7 +145,7 @@ func _physics_process(delta):
 		# Set the position and impulse
 		b.position = position + toMouse.normalized().rotated((randf()-0.5)*0.5)*100
 		var angle=toMouse.dot(Vector2(1,0))/toMouse.length()
-		print(toMouse,angle)
+		#print(toMouse,angle)
 		b.rotation = angle + PI/2
 		b.apply_force(toMouse.normalized()*50000)
 		bulletRecoil = -toMouse.normalized()*10000
@@ -173,7 +173,7 @@ func _physics_process(delta):
 		bubble2Force=Vector2.ZERO
 		frogAnim=2
 		if dist1>currentR:
-			print(dist1,"a",currentR)
+			#print(dist1,"a",currentR)
 			inBubble=false
 			collision_mask |= (1 << 4)
 			impulsSens=1
@@ -255,3 +255,11 @@ func _physics_process(delta):
 	# Melody
 	var newDB = -exp(-(airMax-400)*0.007)
 	audioStreams[2].volume_db = newDB
+	if hearts==0:
+		var endScreen=get_node("../../../Camera2D/GameOver")
+		var level=get_node("../")
+		level.visible=false
+		var display=get_node("../../../Display")
+		display.visible=false
+		endScreen.visible=true
+		
