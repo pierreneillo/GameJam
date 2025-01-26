@@ -31,7 +31,7 @@ func _ready():
 
 	
 func _on_body_shape_entered(body):
-	if body.get_collision_layer_value(2) and invicibility==false:  # Vérifie si l'objet appartient à la layer 3
+	if (body.get_collision_layer_value(2) or body.get_collision_layer_value(4)) and invicibility==false:  # Vérifie si l'objet appartient à la layer 3
 		print("touché")
 		var H=get_node("../HUD/Heart"+str(hearts))
 		H.visible=false

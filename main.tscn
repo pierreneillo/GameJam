@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b3b23gwyceno6"]
+[gd_scene load_steps=14 format=3 uid="uid://b3b23gwyceno6"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_k27p8"]
 [ext_resource type="PackedScene" uid="uid://crnfuim378df" path="res://hud.tscn" id="3_7wyuv"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bmafchkmkuw5x" path="res://simple_obstacle.tscn" id="6_xnntk"]
 [ext_resource type="PackedScene" uid="uid://gye76ie2m7fw" path="res://ennemis.tscn" id="7_cbqg2"]
 [ext_resource type="Texture2D" uid="uid://cnt881qqbxr40" path="res://assets/cloud-303182_1280.png" id="7_erg4f"]
+[ext_resource type="Shader" path="res://particles.gdshader" id="9_v587h"]
 
 [sub_resource type="Gradient" id="Gradient_vi6bo"]
 interpolation_mode = 2
@@ -19,6 +20,12 @@ width = 1024
 height = 1024
 fill_from = Vector2(0.169725, 0.165138)
 fill_to = Vector2(0.954128, 0.995413)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a5wsw"]
+shader = ExtResource("9_v587h")
+shader_parameter/height_multiplier = 0.1
+shader_parameter/noise_sample_size = 0.1
+shader_parameter/animation_speed = 0.025
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w1w8f"]
 lifetime_randomness = 0.5
@@ -87,6 +94,7 @@ scale = Vector2(0.51707, 0.51707)
 texture = ExtResource("7_erg4f")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("ShaderMaterial_a5wsw")
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_w1w8f")
 lifetime = 5.0
