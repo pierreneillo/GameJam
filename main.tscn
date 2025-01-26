@@ -65,7 +65,7 @@ collision_layer = 16
 collision_mask = 15
 
 [node name="PlanetBubble2" parent="." groups=["anchor"] instance=ExtResource("6_jt6oh")]
-position = Vector2(2553, 2438)
+position = Vector2(2429, 2190)
 collision_layer = 16
 collision_mask = 15
 

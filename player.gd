@@ -8,6 +8,7 @@ extends RigidBody2D
 @export var marge = 30 
 @export var maxSlopeAngle = TAU/6
 @export var invicibilityTimeMax=3
+@export var animDelay=0.1
 
 var debugChurch
 var bulletScene = preload("res://bullet.tscn")
@@ -16,12 +17,14 @@ var bubble1
 var bubble2
 var nbJumps=0
 var on_floor: bool = false
+var on_floor_time=0
 var hearts: int = 3
 var invicibility: = false
 var invicibilityTime=0
 var spriteDefault
 var spriteFlying
 var bubbles
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -67,6 +70,7 @@ func _physics_process(delta):
 		var dist=(i.position-position).length()
 		if dist<dist1:
 			dist1=dist
+			bubble2=bubble1
 			bubble1=i
 		elif dist<dist2:
 			dist2=dist
@@ -125,9 +129,12 @@ func _physics_process(delta):
 		b.rotation = toMouse.angle() + PI/2
 		b.apply_force(toMouse.normalized()*50000)
 		bulletRecoil = -toMouse.normalized()*10000
+	if on_floor:
+		on_floor_time=0
+	else:
+		on_floor_time+=delta
 	
-	
-	if not on_floor:
+	if on_floor_time>animDelay:
 		frogAnim = 2
 	
 	if frogAnim == 0:
