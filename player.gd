@@ -15,7 +15,6 @@ extends RigidBody2D
 @export var maxTimerAfterBubble=.5
 var gunBubbles=0
 
-var debugChurch
 var bulletScene = preload("res://bullet.tscn")
 
 var bubble1
@@ -41,7 +40,6 @@ var timerAfterInBubble=0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	bubbles=get_tree().get_nodes_in_group("anchor")
-	debugChurch = get_tree().get_nodes_in_group("debugChurch")[0]
 	
 	audioStreams = get_tree().get_nodes_in_group("audioStreams")
 	camera = get_tree().get_nodes_in_group("camera")[0]
