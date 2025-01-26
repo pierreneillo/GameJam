@@ -5,6 +5,7 @@ extends Camera2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	global_position = player.global_position
+	make_current()
 
 func fit_points_to_camera(points: Array):
 	# Ensure there are points to fit

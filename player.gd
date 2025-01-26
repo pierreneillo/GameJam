@@ -54,7 +54,7 @@ func _ready():
 
 	
 func _on_body_shape_entered(body):
-	if (body.get_collision_layer_value(2) or body.get_collision_layer_value(4)) and invicibility==false:  # Vérifie si l'objet appartient à la layer 3
+	if (body.get_collision_layer_value(2) or body.get_collision_layer_value(4)) and invicibility==false and hearts!=0:  # Vérifie si l'objet appartient à la layer 3
 		var H=get_node("../HUD/Heart"+str(hearts))
 		H.visible=false
 		hearts-=1
@@ -257,3 +257,11 @@ func _physics_process(delta):
 	# Melody
 	var newDB = -exp(-(airMax-400)*0.007)
 	audioStreams[2].volume_db = newDB
+	if hearts==0:
+		var endScreen=get_node("../../../Camera2D/GameOver")
+		var level=get_node("../")
+		level.visible=false
+		var display=get_node("../../../Display")
+		display.visible=false
+		endScreen.visible=true
+		
