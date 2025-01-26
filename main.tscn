@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bmafchkmkuw5x" path="res://simple_obstacle.tscn" id="6_xnntk"]
 [ext_resource type="PackedScene" uid="uid://gye76ie2m7fw" path="res://ennemis.tscn" id="7_cbqg2"]
 [ext_resource type="Texture2D" uid="uid://cnt881qqbxr40" path="res://assets/cloud-303182_1280.png" id="7_erg4f"]
-[ext_resource type="Material" uid="uid://cd64c5wqc818x" path="res://particles.tres" id="9_abjn4"]
+[ext_resource type="Material" uid="uid://cd3ya2nj1hnmw" path="res://particles.tres" id="9_abjn4"]
 
 [sub_resource type="Gradient" id="Gradient_vi6bo"]
 interpolation_mode = 2
@@ -59,8 +59,13 @@ disable_mode = 1
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("5_f6s4g")
 
-[node name="StaticBody2D" parent="." groups=["anchor"] instance=ExtResource("6_jt6oh")]
+[node name="PlanetBubble1" parent="." groups=["anchor"] instance=ExtResource("6_jt6oh")]
 position = Vector2(908, 922)
+collision_layer = 16
+collision_mask = 15
+
+[node name="PlanetBubble2" parent="." groups=["anchor"] instance=ExtResource("6_jt6oh")]
+position = Vector2(2553, 2438)
 collision_layer = 16
 collision_mask = 15
 
@@ -75,6 +80,7 @@ position = Vector2(98, 472)
 motion_scale = Vector2(0.1, 0.1)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer1"]
+visible = false
 scale = Vector2(10, 10)
 texture = SubResource("GradientTexture2D_cjrc5")
 

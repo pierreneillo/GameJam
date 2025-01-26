@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://xw08o0xwmmy5"]
 
 [ext_resource type="Texture2D" uid="uid://7g7lk1t0hkqw" path="res://assets/frogThicjks.png" id="1_gemf7"]
-[ext_resource type="Material" uid="uid://v6upogcxr7tc" path="res://flashplayer.tres" id="1_r8n0j"]
+[ext_resource type="Material" path="res://flashplayer.tres" id="1_r8n0j"]
 [ext_resource type="Texture2D" uid="uid://cdqdxaud3dt6t" path="res://assets/frogFly.png" id="2_lh8rt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n1ehe"]

@@ -12,7 +12,8 @@ extends RigidBody2D
 var debugChurch
 var bulletScene = preload("res://bullet.tscn")
 
-var anchor
+var bubble1
+var bubble2
 var nbJumps=0
 var on_floor: bool = false
 var hearts: int = 3
@@ -20,9 +21,11 @@ var invicibility: = false
 var invicibilityTime=0
 var spriteDefault
 var spriteFlying
+var bubbles
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	anchor = get_tree().get_nodes_in_group("anchor")[0]
+	bubbles=get_tree().get_nodes_in_group("anchor")
 	debugChurch = get_tree().get_nodes_in_group("debugChurch")[0]
 	$"../HUD".visible=true
 	self.connect("body_entered", Callable(self,"_on_body_shape_entered"))
@@ -34,7 +37,6 @@ func _ready():
 	
 func _on_body_shape_entered(body):
 	if (body.get_collision_layer_value(2) or body.get_collision_layer_value(4)) and invicibility==false:  # Vérifie si l'objet appartient à la layer 3
-		print("touché")
 		var H=get_node("../HUD/Heart"+str(hearts))
 		H.visible=false
 		hearts-=1
@@ -44,7 +46,7 @@ func _on_body_shape_entered(body):
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	var i := 0
-	var up = (global_position - anchor.global_position).normalized()
+	var up = (global_position - bubble1.global_position).normalized()
 	on_floor=false
 	while i < state.get_contact_count():
 		var normal := state.get_contact_local_normal(i)
@@ -59,20 +61,34 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	print(on_floor)
-	var toAnchor = anchor.position - position
+	var dist1=INF
+	var dist2=INF
+	for i in bubbles:
+		var dist=(i.position-position).length()
+		if dist<dist1:
+			dist1=dist
+			bubble1=i
+		elif dist<dist2:
+			dist2=dist
+			bubble2=i
+				
+	var tobubble1 = bubble1.position - position
 	var toMouse = get_viewport().get_mouse_position() - position
-	var anchorDist = toAnchor.length()
-	var forceMultiplier = k/anchorDist
-
+	var forceMultiplier1 = k/dist1
 	# Gravity model for now, independant of the distance to the center of the bubble
-	var anchorForce = toAnchor.normalized() * forceMultiplier
-
+	var bubble1Force = tobubble1.normalized() * forceMultiplier1
+	
+	var tobubble2 = bubble2.position - position
+	var forceMultiplier2 = k/dist2
+	var bubble2Force = tobubble2.normalized() * forceMultiplier2
+	
 	var dir=Vector2.ZERO
 	var impuls=Vector2.ZERO
 
+	#if bubble2Force.length()>=bubble1Force.length():
+		
 	# Change direction so that the sprite is "standing" on the planet
-	set_rotation(toAnchor.angle() - PI/2)
+	set_rotation(tobubble1.angle() - PI/2)
 	'''
 	var normalVector = (Vector2.UP.rotated( transform.get_rotation())).normalized()
 	var space_state = get_world_2d().direct_space_state
@@ -87,17 +103,17 @@ func _physics_process(delta):
 
 
 	if Input.is_action_just_pressed("Inthebubble"): #need to check if is on the ground
-		impuls=toAnchor
+		impuls=tobubble1
 	if Input.is_action_just_pressed("Jump") and (on_floor or nbJumps<maxJumps): #need to check if is not in the air already
-		impuls=-toAnchor
+		impuls=-tobubble1
 		nbJumps+=1
 	if Input.is_action_pressed("Left"):
-		dir=-Vector2(toAnchor.y,-toAnchor.x)
+		dir=-Vector2(tobubble1.y,-tobubble1.x)
 		frogAnim = 0
 		
 	if Input.is_action_pressed("Right"):
 		frogAnim = 1
-		dir=Vector2(toAnchor.y,-toAnchor.x)
+		dir=Vector2(tobubble1.y,-tobubble1.x)
 	if on_floor and nbJumps>=maxJumps:
 		nbJumps=0
 
@@ -141,7 +157,7 @@ func _physics_process(delta):
 	var impulsForce=impuls.normalized()*impulsMultiplier
 	var dragForce = -linear_velocity.normalized() * 10
 	
-	var totalForce = anchorForce + dirForce + impulsForce + dragForce + bulletRecoil
+	var totalForce = bubble1Force + bubble2Force + dirForce + impulsForce + dragForce + bulletRecoil
 	apply_force(totalForce)
 	if linear_velocity.length() > maxSpeed:
 		# Calcule une force opposée proportionnelle au dépassement
