@@ -1,19 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://xw08o0xwmmy5"]
+[gd_scene load_steps=5 format=3 uid="uid://xw08o0xwmmy5"]
 
-[ext_resource type="Shader" path="res://flashplayer.gdshader" id="1_731jj"]
 [ext_resource type="Texture2D" uid="uid://7g7lk1t0hkqw" path="res://assets/frogThicjks.png" id="1_gemf7"]
+[ext_resource type="Material" uid="uid://v6upogcxr7tc" path="res://flashplayer.tres" id="1_r8n0j"]
 [ext_resource type="Texture2D" uid="uid://cdqdxaud3dt6t" path="res://assets/frogFly.png" id="2_lh8rt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n1ehe"]
 radius = 72.3395
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_kpg1n"]
-shader = ExtResource("1_731jj")
-shader_parameter/solid_color = Color(0, 0, 0, 1)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mbxwe"]
-shader = ExtResource("1_731jj")
-shader_parameter/solid_color = null
 
 [node name="Player" type="RigidBody2D"]
 collision_mask = 30
@@ -26,11 +18,11 @@ shape = SubResource("CircleShape2D_n1ehe")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="LR" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_kpg1n")
+material = ExtResource("1_r8n0j")
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("1_gemf7")
 
 [node name="flyin" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_mbxwe")
+material = ExtResource("1_r8n0j")
 scale = Vector2(0.035, 0.035)
 texture = ExtResource("2_lh8rt")

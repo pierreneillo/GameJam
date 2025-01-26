@@ -28,17 +28,19 @@ func _ready():
 	self.connect("body_entered", Callable(self,"_on_body_shape_entered"))
 	spriteDefault=get_node("LR")
 	spriteFlying=get_node("flyin")
+	spriteDefault.material.set_shader_parameter("solid_color",Color(0,0,0,0))
+	spriteFlying.material.set_shader_parameter("solid_color",Color(0,0,0,0))
 
 	
 func _on_body_shape_entered(body):
-	if body.get_collision_layer_value(2) and invicibility==false:  # Vérifie si l'objet appartient à la layer 3
+	if (body.get_collision_layer_value(2) or body.get_collision_layer_value(4)) and invicibility==false:  # Vérifie si l'objet appartient à la layer 3
 		print("touché")
 		var H=get_node("../HUD/Heart"+str(hearts))
 		H.visible=false
 		hearts-=1
 		invicibility=true
-		spriteDefault.material.set_shader_parameter("solid_color",Color.WHITE)
-		spriteFlying.material.set_shader_parameter("solid_color",Color.WHITE)
+		spriteDefault.material.set_shader_parameter("solid_color",Color(255.,0.,0.,.5))
+		spriteFlying.material.set_shader_parameter("solid_color",Color(255.,0.,0.,.5))
 
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 	var i := 0
@@ -151,5 +153,5 @@ func _physics_process(delta):
 	if invicibility and invicibilityTime>=invicibilityTimeMax:
 		invicibilityTime=0
 		invicibility=false
-		spriteDefault.material.set_shader_parameter("solid_color",Color.BLACK)
-		spriteFlying.material.set_shader_parameter("solid_color",Color.BLACK)
+		spriteDefault.material.set_shader_parameter("solid_color",Color(0,0,0,0))
+		spriteFlying.material.set_shader_parameter("solid_color",Color(0,0,0,0))

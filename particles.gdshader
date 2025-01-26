@@ -6,7 +6,7 @@ uniform float noise_sample_size = .1;
 uniform float animation_speed = 0.025;
 
 float radius_from_theta(float theta){
-	return .5;
+	return texture(noiseMap,vec2(theta*512.,theta*512.)).r / 4.;
 }
 
 void fragment() {
