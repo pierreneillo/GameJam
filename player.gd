@@ -29,12 +29,13 @@ var spriteDefault
 var spriteFlying
 var bubbles
 var gunTimer=0
-
+var camera
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	bubbles=get_tree().get_nodes_in_group("anchor")
 	debugChurch = get_tree().get_nodes_in_group("debugChurch")[0]
+	camera = get_tree().get_nodes_in_group("camera")[0]
 	$"../HUD".visible=true
 	self.connect("body_entered", Callable(self,"_on_body_shape_entered"))
 	spriteDefault=get_node("LR")
@@ -82,7 +83,7 @@ func _physics_process(delta):
 			bubble2=i
 				
 	var tobubble1 = bubble1.position - position
-	var toMouse = get_viewport().get_mouse_position() - position
+	var toMouse = get_global_mouse_position() - position
 	var forceMultiplier1 = k/dist1
 	# Gravity model for now, independant of the distance to the center of the bubble
 	var bubble1Force = tobubble1.normalized() * forceMultiplier1
@@ -190,3 +191,4 @@ func _physics_process(delta):
 		invicibility=false
 		spriteDefault.material.set_shader_parameter("solid_color",Color(0,0,0,0))
 		spriteFlying.material.set_shader_parameter("solid_color",Color(0,0,0,0))
+	camera.centerOnPlayer(position,delta)

@@ -40,6 +40,7 @@ func fit_points_to_camera(points: Array):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	return
 	# On doit faire en sorte de toujours voir une bulle et le joueur
 	# On cherche la bulle la plus proche
 	var bubbles = get_tree().get_nodes_in_group("anchor")
@@ -50,4 +51,14 @@ func _process(delta: float) -> void:
 	
 	fit_points_to_camera([player.global_position,bubble_surface_point])
 	print([player.global_position,bubble_surface_point])
-	global_position = player.global_position
+	
+func centerOnPlayer(target_position,delta):
+	#return
+	
+	global_position = global_position.lerp(target_position, (5 * delta)) 
+	#global_position = target_position + Vector2(200,200)
+	#print('lol')
+	#if global_position.distance_to(target_position) <= 1: 
+	#	position = position.round()
+	
+	#global_position += Vector2(100,100)
