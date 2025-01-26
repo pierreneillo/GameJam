@@ -9,6 +9,10 @@ extends RigidBody2D
 @export var maxSlopeAngle = TAU/6
 @export var invicibilityTimeMax=3
 @export var animDelay=0.1
+@export var gunBubblesSeconds = 3
+@export var maxGunBubbles=4 #number of bullets authorized per gunBubblesSeconds seconds
+
+var gunBubbles=0
 
 var debugChurch
 var bulletScene = preload("res://bullet.tscn")
@@ -24,6 +28,7 @@ var invicibilityTime=0
 var spriteDefault
 var spriteFlying
 var bubbles
+var gunTimer=0
 
 
 # Called when the node enters the scene tree for the first time.
@@ -120,8 +125,9 @@ func _physics_process(delta):
 		dir=Vector2(tobubble1.y,-tobubble1.x)
 	if on_floor and nbJumps>=maxJumps:
 		nbJumps=0
-
-	if Input.is_action_just_pressed("click"):
+	if Input.is_action_just_pressed("click") and gunBubbles<=maxGunBubbles:
+		if gunTimer==0:
+			gunTimer+=delta
 		var b = bulletScene.instantiate()
 		get_tree().get_current_scene().add_child(b)
 		# Set the position and impulse
@@ -129,6 +135,12 @@ func _physics_process(delta):
 		b.rotation = toMouse.angle() + PI/2
 		b.apply_force(toMouse.normalized()*50000)
 		bulletRecoil = -toMouse.normalized()*10000
+		gunBubbles+=1
+	if gunTimer>0 and gunTimer<gunBubblesSeconds:
+		gunTimer+=delta
+	if gunTimer>=gunBubblesSeconds and on_floor:
+		gunTimer=0
+		gunBubbles=0
 	if on_floor:
 		on_floor_time=0
 	else:

@@ -7,8 +7,12 @@ func _ready() -> void:
 	die()
 	anchor = get_tree().get_nodes_in_group("anchor")[0]
 	pass # Replace with function body.
+	self.connect("body_entered", Callable(self,"_on_body_shape_entered"))
 	
-func die(deathTime=1.0):
+func _on_body_entered(body):
+	die()
+	
+func die(deathTime=0.01):
 	# Do some action
 	await get_tree().create_timer(deathTime).timeout # waits for 1 second
 	# Do something afterwards
