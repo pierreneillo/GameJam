@@ -15,7 +15,10 @@ void fragment() {
 	float r = sqrt(dx*dx+dy*dy);
 	float theta = atan(dy,dx);
 	float theta01 = theta/TAU + .5;
-	COLOR = vec4(245.,255.,0.,float(radius_from_theta(theta01)>r));
+	    // Calcule une interpolation douce pour l'alpha
+    float distance_to_radius = radius_from_theta(theta01) - r;
+    float fade = smoothstep(-0.1, 0.0, distance_to_radius);
+	COLOR = vec4(245./255.,255./255.,0.,fade);
 }
 
 //void light() {

@@ -60,8 +60,13 @@ disable_mode = 1
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("5_f6s4g")
 
-[node name="StaticBody2D" parent="." groups=["anchor"] instance=ExtResource("6_jt6oh")]
-position = Vector2(1251, 1879)
+[node name="PlanetBubble1" parent="." groups=["anchor"] instance=ExtResource("6_jt6oh")]
+position = Vector2(908, 922)
+collision_layer = 16
+collision_mask = 15
+
+[node name="PlanetBubble2" parent="." groups=["anchor"] instance=ExtResource("6_jt6oh")]
+position = Vector2(2429, 2190)
 collision_layer = 16
 collision_mask = 15
 
@@ -76,6 +81,7 @@ position = Vector2(98, 472)
 motion_scale = Vector2(0.1, 0.1)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer1"]
+visible = false
 scale = Vector2(10, 10)
 texture = SubResource("GradientTexture2D_cjrc5")
 
