@@ -1,0 +1,144 @@
+[gd_scene load_steps=20 format=3 uid="uid://b3b23gwyceno6"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_k27p8"]
+[ext_resource type="PackedScene" uid="uid://crnfuim378df" path="res://hud.tscn" id="3_7wyuv"]
+[ext_resource type="Texture2D" uid="uid://d0s88h1vv63dm" path="res://assets/church2.jpeg" id="5_f6s4g"]
+[ext_resource type="PackedScene" uid="uid://bv1w3c5qpoxfb" path="res://big_bubble.tscn" id="6_jt6oh"]
+[ext_resource type="PackedScene" uid="uid://xw08o0xwmmy5" path="res://player.tscn" id="6_v7rn5"]
+[ext_resource type="PackedScene" uid="uid://bmafchkmkuw5x" path="res://simple_obstacle.tscn" id="6_xnntk"]
+[ext_resource type="PackedScene" uid="uid://gye76ie2m7fw" path="res://ennemis.tscn" id="7_cbqg2"]
+[ext_resource type="Texture2D" uid="uid://cnt881qqbxr40" path="res://assets/cloud-303182_1280.png" id="7_erg4f"]
+[ext_resource type="Texture2D" uid="uid://ca0mlwi0nly0o" path="res://assets/Space-Background-Image-2.jpg" id="8_o6cju"]
+[ext_resource type="Material" uid="uid://cd3ya2nj1hnmw" path="res://particles.tres" id="9_abjn4"]
+[ext_resource type="Script" path="res://camera.gd" id="10_wfc2i"]
+[ext_resource type="AudioStream" uid="uid://bdk2vnniwbpon" path="res://owdio/demodemodemo_pjanoo.wav" id="11_0vtfx"]
+[ext_resource type="AudioStream" uid="uid://bnmna1m2uxlwy" path="res://owdio/demodemodemo_piano.wav" id="12_3luqn"]
+[ext_resource type="AudioStream" uid="uid://glhal4nt3q2q" path="res://owdio/demodemodemo_sinth.wav" id="13_gvebo"]
+
+[sub_resource type="Gradient" id="Gradient_vi6bo"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.181818, 0.493506, 1)
+colors = PackedColorArray(0.0768084, 0.833186, 0.637901, 1, 0.88441, 0.583646, 0.952296, 1, 0.800809, 0.0726491, 0.437899, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cjrc5"]
+gradient = SubResource("Gradient_vi6bo")
+width = 1024
+height = 1024
+fill_from = Vector2(0.169725, 0.165138)
+fill_to = Vector2(0.954128, 0.995413)
+
+[sub_resource type="Curve" id="Curve_nowqi"]
+_data = [Vector2(0, 0), 0.0, 9.69608, 0, 0, Vector2(0.249689, 0.991376), 0.0, 0.0, 0, 0, Vector2(0.750311, 0.99425), 0.0, 0.0, 0, 0, Vector2(1, 0), -8.64878, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_yflwm"]
+texture_mode = 1
+curve = SubResource("Curve_nowqi")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w1w8f"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(2048, 2048, 1)
+gravity = Vector3(0, 0, 0)
+scale_min = 16.0
+scale_max = 32.0
+alpha_curve = SubResource("CurveTexture_yflwm")
+
+[node name="Level1" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("6_v7rn5")]
+z_index = 2
+position = Vector2(235, 157)
+contact_monitor = true
+max_contacts_reported = 3
+script = ExtResource("1_k27p8")
+impulsMultiplier = 50000
+
+[node name="SimpleObstacle" parent="." instance=ExtResource("6_xnntk")]
+z_index = 1
+position = Vector2(858, 292)
+rotation = -1.72104
+disable_mode = 1
+
+[node name="debugChurch" type="Sprite2D" parent="." groups=["debugChurch"]]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_f6s4g")
+
+[node name="PlanetBubble1" parent="." groups=["anchor"] instance=ExtResource("6_jt6oh")]
+position = Vector2(908, 922)
+collision_layer = 16
+collision_mask = 15
+
+[node name="PlanetBubble2" parent="." groups=["anchor"] instance=ExtResource("6_jt6oh")]
+position = Vector2(3751, 3550)
+collision_layer = 16
+collision_mask = 15
+
+[node name="HUD" parent="." instance=ExtResource("3_7wyuv")]
+
+[node name="Enemies" parent="." instance=ExtResource("7_cbqg2")]
+position = Vector2(98, 472)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer1" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.1, 0.1)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer1"]
+position = Vector2(2000, 1661)
+rotation = 3.14159
+scale = Vector2(8, 8)
+texture = SubResource("GradientTexture2D_cjrc5")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(-67, -114)
+scale = Vector2(0.51707, 0.51707)
+texture = ExtResource("7_erg4f")
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(1802, 306)
+scale = Vector2(0.51707, 0.51707)
+texture = ExtResource("7_erg4f")
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(264, 1039)
+scale = Vector2(0.51707, 0.51707)
+texture = ExtResource("7_erg4f")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = ExtResource("9_abjn4")
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_w1w8f")
+lifetime = 5.0
+speed_scale = 0.5
+
+[node name="spaceBg" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.0941176)
+scale = Vector2(7, 7)
+texture = ExtResource("8_o6cju")
+
+[node name="soudnz" type="Node" parent="."]
+
+[node name="pjanoo" type="AudioStreamPlayer" parent="soudnz" groups=["audioStreams"]]
+stream = ExtResource("11_0vtfx")
+autoplay = true
+
+[node name="chordz" type="AudioStreamPlayer" parent="soudnz" groups=["audioStreams"]]
+stream = ExtResource("12_3luqn")
+autoplay = true
+
+[node name="sinth" type="AudioStreamPlayer" parent="soudnz" groups=["audioStreams"]]
+stream = ExtResource("13_gvebo")
+autoplay = true
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player") groups=["camera"]]
+position = Vector2(413, 265)
+zoom = Vector2(1.1, 1.1)
+process_callback = 0
+position_smoothing_enabled = true
+script = ExtResource("10_wfc2i")
+player = NodePath("../Player")
