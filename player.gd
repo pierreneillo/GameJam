@@ -59,7 +59,6 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	print(on_floor)
 	var toAnchor = anchor.position - position
 	var toMouse = get_viewport().get_mouse_position() - position
 	var anchorDist = toAnchor.length()
