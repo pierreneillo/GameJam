@@ -31,6 +31,8 @@ var spriteFlying
 var bubbles
 var gunTimer=0
 var camera
+var audioStreams
+
 var inBubble=false
 var currentR
 var impulsSens=1
@@ -40,6 +42,8 @@ var timerAfterInBubble=0
 func _ready():
 	bubbles=get_tree().get_nodes_in_group("anchor")
 	debugChurch = get_tree().get_nodes_in_group("debugChurch")[0]
+	
+	audioStreams = get_tree().get_nodes_in_group("audioStreams")
 	camera = get_tree().get_nodes_in_group("camera")[0]
 	$"../HUD".visible=true
 	self.connect("body_entered", Callable(self,"_on_body_shape_entered"))
@@ -230,3 +234,20 @@ func _physics_process(delta):
 		toBuwble = tobubble2
 	
 	camera.centerOnPlayer(position,delta,toBuwble)
+	
+	# musicStuffs
+	
+	# Piano
+	if tobubble1.length() > 1800:
+		var discrepancyOne = (tobubble1.length() - 1800)
+		audioStreams[0].volume_db = - discrepancyOne * 0.01 #Vector2(1.0,1.0) * exp(-discrepancy*0.002)
+	else:
+		audioStreams[0].volume_db = 0.0
+		
+	
+	
+	# Synth Chords
+	audioStreams[1].volume_db = -100
+	
+	# Melody
+	audioStreams[2].volume_db = -100
