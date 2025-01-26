@@ -257,7 +257,7 @@ func _physics_process(delta):
 	print('airmax')
 	print(airMax)
 	# Melody
-	var newDB = -exp(-(airMax+0)*0.005)
+	var newDB = -exp(-(airMax-100)*0.002)
 	print('newDB')
 	print(newDB)
 	audioStreams[2].volume_db = newDB
