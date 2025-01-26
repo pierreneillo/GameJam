@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b3b23gwyceno6"]
+[gd_scene load_steps=15 format=3 uid="uid://b3b23gwyceno6"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_k27p8"]
 [ext_resource type="PackedScene" uid="uid://crnfuim378df" path="res://hud.tscn" id="3_7wyuv"]
@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bmafchkmkuw5x" path="res://simple_obstacle.tscn" id="6_xnntk"]
 [ext_resource type="PackedScene" uid="uid://gye76ie2m7fw" path="res://ennemis.tscn" id="7_cbqg2"]
 [ext_resource type="Texture2D" uid="uid://cnt881qqbxr40" path="res://assets/cloud-303182_1280.png" id="7_erg4f"]
-[ext_resource type="Shader" path="res://particles.gdshader" id="9_v587h"]
+[ext_resource type="Material" uid="uid://cd64c5wqc818x" path="res://particles.tres" id="9_abjn4"]
 
 [sub_resource type="Gradient" id="Gradient_vi6bo"]
 interpolation_mode = 2
@@ -21,11 +21,13 @@ height = 1024
 fill_from = Vector2(0.169725, 0.165138)
 fill_to = Vector2(0.954128, 0.995413)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_a5wsw"]
-shader = ExtResource("9_v587h")
-shader_parameter/height_multiplier = 0.1
-shader_parameter/noise_sample_size = 0.1
-shader_parameter/animation_speed = 0.025
+[sub_resource type="Curve" id="Curve_nowqi"]
+_data = [Vector2(0, 0), 0.0, 9.69608, 0, 0, Vector2(0.249689, 0.991376), 0.0, 0.0, 0, 0, Vector2(0.750311, 0.99425), 0.0, 0.0, 0, 0, Vector2(1, 0), -8.64878, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_yflwm"]
+texture_mode = 1
+curve = SubResource("Curve_nowqi")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w1w8f"]
 lifetime_randomness = 0.5
@@ -35,6 +37,7 @@ emission_box_extents = Vector3(2048, 2048, 1)
 gravity = Vector3(0, 0, 0)
 scale_min = 16.0
 scale_max = 32.0
+alpha_curve = SubResource("CurveTexture_yflwm")
 
 [node name="Level1" type="Node2D"]
 
@@ -57,7 +60,7 @@ scale = Vector2(0.1, 0.1)
 texture = ExtResource("5_f6s4g")
 
 [node name="StaticBody2D" parent="." groups=["anchor"] instance=ExtResource("6_jt6oh")]
-position = Vector2(566, 316)
+position = Vector2(908, 922)
 collision_layer = 16
 collision_mask = 15
 
@@ -94,7 +97,7 @@ scale = Vector2(0.51707, 0.51707)
 texture = ExtResource("7_erg4f")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-material = SubResource("ShaderMaterial_a5wsw")
+material = ExtResource("9_abjn4")
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_w1w8f")
 lifetime = 5.0
