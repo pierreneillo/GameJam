@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b3b23gwyceno6"]
+[gd_scene load_steps=20 format=3 uid="uid://b3b23gwyceno6"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_k27p8"]
 [ext_resource type="PackedScene" uid="uid://crnfuim378df" path="res://hud.tscn" id="3_7wyuv"]
@@ -11,6 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://ca0mlwi0nly0o" path="res://assets/Space-Background-Image-2.jpg" id="8_o6cju"]
 [ext_resource type="Material" uid="uid://cd3ya2nj1hnmw" path="res://particles.tres" id="9_abjn4"]
 [ext_resource type="Script" path="res://camera.gd" id="10_wfc2i"]
+[ext_resource type="AudioStream" uid="uid://bdk2vnniwbpon" path="res://owdio/demodemodemo_pjanoo.wav" id="11_0vtfx"]
+[ext_resource type="AudioStream" uid="uid://bnmna1m2uxlwy" path="res://owdio/demodemodemo_piano.wav" id="12_3luqn"]
+[ext_resource type="AudioStream" uid="uid://glhal4nt3q2q" path="res://owdio/demodemodemo_sinth.wav" id="13_gvebo"]
 
 [sub_resource type="Gradient" id="Gradient_vi6bo"]
 interpolation_mode = 2
@@ -117,6 +120,20 @@ speed_scale = 0.5
 self_modulate = Color(1, 1, 1, 0.0941176)
 scale = Vector2(7, 7)
 texture = ExtResource("8_o6cju")
+
+[node name="soudnz" type="Node" parent="."]
+
+[node name="pjanoo" type="AudioStreamPlayer" parent="soudnz" groups=["audioStreams"]]
+stream = ExtResource("11_0vtfx")
+autoplay = true
+
+[node name="chordz" type="AudioStreamPlayer" parent="soudnz" groups=["audioStreams"]]
+stream = ExtResource("12_3luqn")
+autoplay = true
+
+[node name="sinth" type="AudioStreamPlayer" parent="soudnz" groups=["audioStreams"]]
+stream = ExtResource("13_gvebo")
+autoplay = true
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player") groups=["camera"]]
 position = Vector2(413, 265)
