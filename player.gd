@@ -72,6 +72,7 @@ func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
 func _physics_process(delta):
 	var dist1=INF
 	var dist2=INF
+	
 	for i in bubbles:
 		var dist=(i.position-position).length()
 		if dist<dist1:
@@ -193,4 +194,11 @@ func _physics_process(delta):
 		invicibility=false
 		spriteDefault.material.set_shader_parameter("solid_color",Color(0,0,0,0))
 		spriteFlying.material.set_shader_parameter("solid_color",Color(0,0,0,0))
-	camera.centerOnPlayer(position,delta)
+	
+	var toBuwble
+	if tobubble1.length() < tobubble2.length():
+		toBuwble = tobubble1
+	else:
+		toBuwble = tobubble2
+	
+	camera.centerOnPlayer(position,delta,toBuwble)

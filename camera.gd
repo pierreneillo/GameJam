@@ -51,13 +51,25 @@ func _process(delta: float) -> void:
 	fit_points_to_camera([player.global_position,bubble_surface_point])
 	print([player.global_position,bubble_surface_point])
 	
-func centerOnPlayer(target_position,delta):
+func centerOnPlayer(target_position,delta,toBuwble):
 	#return
 	
-	global_position = global_position.lerp(target_position, (5 * delta)) 
+	global_position = global_position.lerp(target_position, (15 * delta)) 
 	#global_position = target_position + Vector2(200,200)
 	#print('lol')
 	#if global_position.distance_to(target_position) <= 1: 
 	#	position = position.round()
 	
+	print(toBuwble.length())
+	if toBuwble.length() > 1800.0:
+		print('ajaj')
+		
+		var discrepancy = (toBuwble.length() - 1800)
+		print(discrepancy)
+		
+		zoom = Vector2(1.0,1.0) * exp(-discrepancy*0.002)
+		#zoom = Vector2(1.0,1.0)  * 0.5
+	else:
+		zoom = Vector2(1.0,1.0)
+		#Vector2(1.0,1.0) 	
 	#global_position += Vector2(100,100)

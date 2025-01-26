@@ -88,6 +88,11 @@ rotation = 3.14159
 scale = Vector2(8, 8)
 texture = SubResource("GradientTexture2D_cjrc5")
 
+[node name="spaceBg" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer1"]
+self_modulate = Color(1, 1, 1, 0.0941176)
+scale = Vector2(3, 3)
+texture = ExtResource("8_o6cju")
+
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.5, 0.5)
 
@@ -112,11 +117,6 @@ amount = 50
 process_material = SubResource("ParticleProcessMaterial_w1w8f")
 lifetime = 5.0
 speed_scale = 0.5
-
-[node name="spaceBg" type="Sprite2D" parent="."]
-self_modulate = Color(1, 1, 1, 0.0941176)
-scale = Vector2(7, 7)
-texture = ExtResource("8_o6cju")
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player") groups=["camera"]]
 position = Vector2(413, 265)
