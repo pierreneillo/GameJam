@@ -7,13 +7,17 @@
 
 [node name="Killable enemy 1" type="RigidBody2D" parent="."]
 collision_layer = 2
-collision_mask = 13
+collision_mask = 29
+contact_monitor = true
+max_contacts_reported = 3
 script = ExtResource("1_od2pi")
 
 [node name="Sprite2D" type="Sprite2D" parent="Killable enemy 1"]
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_skorq")
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="Killable enemy 1"]
+scale = Vector2(0.5, 0.5)
 polygon = PackedVector2Array(-69, -96, 73, -90, 73, 87, -63, 86)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Killable enemy 1"]
