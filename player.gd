@@ -83,7 +83,10 @@ func _physics_process(delta):
 			bubble2=i
 				
 	var tobubble1 = bubble1.position - position
+<<<<<<< HEAD
 	var toMouse = get_global_mouse_position() - position
+=======
+>>>>>>> 407678e3d63bbcb95946ceda0dcad3ebf4657a56
 	var forceMultiplier1 = k/dist1
 	# Gravity model for now, independant of the distance to the center of the bubble
 	var bubble1Force = tobubble1.normalized() * forceMultiplier1
@@ -94,9 +97,9 @@ func _physics_process(delta):
 	
 	var dir=Vector2.ZERO
 	var impuls=Vector2.ZERO
-
-	#if bubble2Force.length()>=bubble1Force.length():
-		
+	var toMouse = get_viewport().get_camera_2d().position + get_viewport().get_mouse_position() - position
+	print(get_viewport().get_mouse_position()+get_viewport().get_camera_2d().position-position)
+	draw_line(position,  get_viewport().get_mouse_position() , Color.RED)
 	# Change direction so that the sprite is "standing" on the planet
 	set_rotation(tobubble1.angle() - PI/2)
 	'''
@@ -114,6 +117,7 @@ func _physics_process(delta):
 
 	if Input.is_action_just_pressed("Inthebubble"): #need to check if is on the ground
 		impuls=tobubble1
+		collision_mask &= ~(1 << 4)
 	if Input.is_action_just_pressed("Jump") and (on_floor or nbJumps<maxJumps): #need to check if is not in the air already
 		impuls=-tobubble1
 		nbJumps+=1
@@ -133,7 +137,9 @@ func _physics_process(delta):
 		get_tree().get_current_scene().add_child(b)
 		# Set the position and impulse
 		b.position = position + toMouse.normalized().rotated((randf()-0.5)*0.5)*100
-		b.rotation = toMouse.angle() + PI/2
+		var angle=toMouse.dot(Vector2(1,0))/toMouse.length()
+		print(toMouse,angle)
+		b.rotation = angle + PI/2
 		b.apply_force(toMouse.normalized()*50000)
 		bulletRecoil = -toMouse.normalized()*10000
 		gunBubbles+=1

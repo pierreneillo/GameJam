@@ -35,7 +35,6 @@ func fit_points_to_camera(points: Array):
 	var zoom_x = width / viewport_size.x
 	var zoom_y = height / viewport_size.y
 	var padded_zoom = max(zoom_x, zoom_y) *.8
-	print(center,padded_zoom)
 	#zoom = Vector2(padded_zoom * aspect_ratio, padded_zoom)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
