@@ -2,6 +2,7 @@ extends RigidBody2D
 
 @export var dirMultiplier = 500
 @export var impulsMultiplier = 20000
+@export var impulsInBubble = 1000
 @export var maxJumps = 2
 @export var maxSpeed = 450
 @export var k = 500000
@@ -11,7 +12,7 @@ extends RigidBody2D
 @export var animDelay=0.1
 @export var gunBubblesSeconds = 3
 @export var maxGunBubbles=4 #number of bullets authorized per gunBubblesSeconds seconds
-
+@export var maxTimerAfterBubble=.5
 var gunBubbles=0
 
 var debugChurch
@@ -30,7 +31,11 @@ var spriteFlying
 var bubbles
 var gunTimer=0
 var camera
-
+var inBubble=false
+var currentR
+var impulsSens=1
+var tempMult=1
+var timerAfterInBubble=0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	bubbles=get_tree().get_nodes_in_group("anchor")
@@ -83,10 +88,9 @@ func _physics_process(delta):
 			bubble2=i
 				
 	var tobubble1 = bubble1.position - position
-<<<<<<< HEAD
+
 	var toMouse = get_global_mouse_position() - position
-=======
->>>>>>> 407678e3d63bbcb95946ceda0dcad3ebf4657a56
+
 	var forceMultiplier1 = k/dist1
 	# Gravity model for now, independant of the distance to the center of the bubble
 	var bubble1Force = tobubble1.normalized() * forceMultiplier1
@@ -97,8 +101,6 @@ func _physics_process(delta):
 	
 	var dir=Vector2.ZERO
 	var impuls=Vector2.ZERO
-	var toMouse = get_viewport().get_camera_2d().position + get_viewport().get_mouse_position() - position
-	print(get_viewport().get_mouse_position()+get_viewport().get_camera_2d().position-position)
 	draw_line(position,  get_viewport().get_mouse_position() , Color.RED)
 	# Change direction so that the sprite is "standing" on the planet
 	set_rotation(tobubble1.angle() - PI/2)
@@ -115,8 +117,11 @@ func _physics_process(delta):
 	var frogAnim = 0
 
 
-	if Input.is_action_just_pressed("Inthebubble"): #need to check if is on the ground
+	if Input.is_action_just_pressed("Inthebubble") and on_floor and inBubble==false: #need to check if is on the ground
 		impuls=tobubble1
+		collision_mask &= ~(1 << 4)
+		inBubble=true
+		currentR=dist1
 	if Input.is_action_just_pressed("Jump") and (on_floor or nbJumps<maxJumps): #need to check if is not in the air already
 		impuls=-tobubble1
 		nbJumps+=1
@@ -154,7 +159,23 @@ func _physics_process(delta):
 	
 	if on_floor_time>animDelay:
 		frogAnim = 2
-	
+
+		# Flying
+	if inBubble:
+		if dist1>100:
+			impuls=tobubble1*impulsSens
+		elif dist1<100 and impulsSens==1:
+			impulsSens=-1
+		bubble1Force=Vector2.ZERO
+		bubble2Force=Vector2.ZERO
+		frogAnim=2
+		if dist1>currentR:
+			print(dist1,"a",currentR)
+			inBubble=false
+			collision_mask |= (1 << 4)
+			impulsSens=1
+			tempMult=100
+		
 	if frogAnim == 0:
 		# Left
 		spriteDefault.flip_h = true
@@ -173,17 +194,21 @@ func _physics_process(delta):
 		spriteFlying.rotation = toMouse.angle() - rotation + PI/2
 		
 		
-		# Flying
-		
-		
-		
-		
 	var dirForce=dir.normalized()*dirMultiplier
-	var impulsForce=impuls.normalized()*impulsMultiplier
+	var impulseForce
+	if inBubble:
+		impulseForce=impuls.normalized()*impulsInBubble
+	else:
+		impulseForce=impuls.normalized()*impulsMultiplier
 	var dragForce = -linear_velocity.normalized() * 10
 	
-	var totalForce = bubble1Force + bubble2Force + dirForce + impulsForce + dragForce + bulletRecoil
+	var totalForce = bubble1Force + bubble2Force + dirForce + impulseForce + dragForce + bulletRecoil
 	apply_force(totalForce)
+	if tempMult==100 and on_floor==false and timerAfterInBubble<maxTimerAfterBubble:
+		timerAfterInBubble+=delta
+	elif tempMult==100 and on_floor==false:
+		linear_velocity=-linear_velocity.length()*Vector2.ONE*2
+		tempMult=1
 	if linear_velocity.length() > maxSpeed:
 		# Calcule une force opposée proportionnelle au dépassement
 		var excess_speed = linear_velocity.length() - maxSpeed
