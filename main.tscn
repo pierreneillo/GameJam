@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bmafchkmkuw5x" path="res://simple_obstacle.tscn" id="6_xnntk"]
 [ext_resource type="PackedScene" uid="uid://gye76ie2m7fw" path="res://ennemis.tscn" id="7_cbqg2"]
 [ext_resource type="Texture2D" uid="uid://cnt881qqbxr40" path="res://assets/cloud-303182_1280.png" id="7_erg4f"]
+[ext_resource type="Texture2D" uid="uid://ca0mlwi0nly0o" path="res://assets/Space-Background-Image-2.jpg" id="8_o6cju"]
 [ext_resource type="Material" uid="uid://cd3ya2nj1hnmw" path="res://particles.tres" id="9_abjn4"]
 [ext_resource type="Script" path="res://camera.gd" id="10_wfc2i"]
 [ext_resource type="AudioStream" uid="uid://bdk2vnniwbpon" path="res://owdio/demodemodemo_pjanoo.wav" id="11_0vtfx"]
@@ -16,7 +17,8 @@
 
 [sub_resource type="Gradient" id="Gradient_vi6bo"]
 interpolation_mode = 2
-colors = PackedColorArray(0.297481, 0.4949, 0.759082, 1, 0.492025, 0.240679, 0.390549, 1)
+offsets = PackedFloat32Array(0.181818, 0.493506, 1)
+colors = PackedColorArray(0.0768084, 0.833186, 0.637901, 1, 0.88441, 0.583646, 0.952296, 1, 0.800809, 0.0726491, 0.437899, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_cjrc5"]
 gradient = SubResource("Gradient_vi6bo")
@@ -84,7 +86,9 @@ position = Vector2(98, 472)
 motion_scale = Vector2(0.1, 0.1)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer1"]
-scale = Vector2(10, 10)
+position = Vector2(2000, 1661)
+rotation = 3.14159
+scale = Vector2(8, 8)
 texture = SubResource("GradientTexture2D_cjrc5")
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -133,6 +137,8 @@ autoplay = true
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player") groups=["camera"]]
 position = Vector2(413, 265)
+zoom = Vector2(1.1, 1.1)
 process_callback = 0
+position_smoothing_enabled = true
 script = ExtResource("10_wfc2i")
 player = NodePath("../Player")
