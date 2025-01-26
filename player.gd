@@ -114,7 +114,6 @@ func _physics_process(delta):
 
 	if Input.is_action_just_pressed("Inthebubble"): #need to check if is on the ground
 		impuls=tobubble1
-		collision_mask &= ~(1 << 4)
 	if Input.is_action_just_pressed("Jump") and (on_floor or nbJumps<maxJumps): #need to check if is not in the air already
 		impuls=-tobubble1
 		nbJumps+=1
